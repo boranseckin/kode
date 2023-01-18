@@ -18,8 +18,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Text("Hello")
-
                 ForEach(accountData.accounts) { account in
                     AccountRowView(account: account, progress: progress)
                         .onReceive(timer) { time in
@@ -34,6 +32,7 @@ struct ContentView: View {
                             accountData.updateCode(account: account)
                         }
                 }
+                .onDelete(perform: accountData.remove)
             }
             .navigationTitle("Kode")
             .toolbar {
