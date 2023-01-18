@@ -38,20 +38,24 @@ class AccountData: ObservableObject {
     @Published var accounts = [Account]()
     
     init() {
+        load()
         self.accounts.append(Account.example)
         self.accounts.append(Account.example2)
     }
     
     func add(secret: String, name: String, email: String) {
         accounts.append(Account(id: UUID(), secret: secret, name: name, email: email, code: "000000"))
+        _ = save()
     }
     
     func remove(at offset: IndexSet) {
         accounts.remove(atOffsets: offset)
+        _ = save()
     }
     
     func move(source: IndexSet, destination: Int) {
         accounts.move(fromOffsets: source, toOffset: destination)
+        _ = save()
     }
     
     func updateCode(account: Account) {
@@ -61,6 +65,27 @@ class AccountData: ObservableObject {
                     accounts[index].code = totp.generate(time: Date())!
                 }
             }
+        }
+    }
+    
+    func save() -> Bool {
+        let json = Bundle.main.encode([Account].self, data: accounts)
+        
+        do {
+            return try Data.saveFM(jsonObject: json, toFilename: "account_data")
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func load() {
+        do {
+            if let data = try Data.loadFM(withFilename: "account_data") {
+                let json = Bundle.main.decode([Account].self, from: data)
+                accounts = json
+            }
+        } catch {
+            accounts = []
         }
     }
 }
