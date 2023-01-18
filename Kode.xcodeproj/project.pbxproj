@@ -7,19 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540A9DCE29779FD3005893D3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DCD29779FD3005893D3 /* Account.swift */; };
+		540A9DD32977A68D005893D3 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 540A9DD22977A68D005893D3 /* SwiftOTP */; };
+		540A9DD52977B716005893D3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
 		5410B9E32975C25100E2839E /* KodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E22975C25100E2839E /* KodeApp.swift */; };
 		5410B9E52975C25100E2839E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E42975C25100E2839E /* ContentView.swift */; };
 		5410B9E72975C25200E2839E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
 		5410B9EB2975C25200E2839E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9EA2975C25200E2839E /* Preview Assets.xcassets */; };
+		5410B9F52975C53600E2839E /* Base32 in Frameworks */ = {isa = PBXBuildFile; productRef = 5410B9F42975C53600E2839E /* Base32 */; };
+		54FF6198297871FD000E5D5E /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF6197297871FD000E5D5E /* AppView.swift */; };
+		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
+		54FF619E29787522000E5D5E /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AddAccountView.swift */; };
+		54FF61A129787894000E5D5E /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A029787894000E5D5E /* ProgressBarView.swift */; };
+		54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A229787B6F000E5D5E /* AccountRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540A9DCD29779FD3005893D3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		540A9DD42977B715005893D3 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5410B9DF2975C25100E2839E /* Kode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410B9E22975C25100E2839E /* KodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodeApp.swift; sourceTree = "<group>"; };
 		5410B9E42975C25100E2839E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5410B9E62975C25200E2839E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5410B9E82975C25200E2839E /* Kode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kode.entitlements; sourceTree = "<group>"; };
 		5410B9EA2975C25200E2839E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		54FF6197297871FD000E5D5E /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		54FF61992978721B000E5D5E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		54FF619D29787522000E5D5E /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
+		54FF61A029787894000E5D5E /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		54FF61A229787B6F000E5D5E /* AccountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540A9DD32977A68D005893D3 /* SwiftOTP in Frameworks */,
+				5410B9F52975C53600E2839E /* Base32 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +71,14 @@
 			isa = PBXGroup;
 			children = (
 				5410B9E22975C25100E2839E /* KodeApp.swift */,
+				54FF6197297871FD000E5D5E /* AppView.swift */,
 				5410B9E42975C25100E2839E /* ContentView.swift */,
+				54FF61992978721B000E5D5E /* SettingsView.swift */,
+				54FF61A229787B6F000E5D5E /* AccountRowView.swift */,
+				54FF619D29787522000E5D5E /* AddAccountView.swift */,
+				54FF61A029787894000E5D5E /* ProgressBarView.swift */,
+				540A9DCD29779FD3005893D3 /* Account.swift */,
+				540A9DD42977B715005893D3 /* Utils.swift */,
 				5410B9E62975C25200E2839E /* Assets.xcassets */,
 				5410B9E82975C25200E2839E /* Kode.entitlements */,
 				5410B9E92975C25200E2839E /* Preview Content */,
@@ -85,6 +110,10 @@
 			dependencies = (
 			);
 			name = Kode;
+			packageProductDependencies = (
+				5410B9F42975C53600E2839E /* Base32 */,
+				540A9DD22977A68D005893D3 /* SwiftOTP */,
+			);
 			productName = Kode;
 			productReference = 5410B9DF2975C25100E2839E /* Kode.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +142,10 @@
 				Base,
 			);
 			mainGroup = 5410B9D62975C25100E2839E;
+			packageReferences = (
+				5410B9F32975C53600E2839E /* XCRemoteSwiftPackageReference "swift-base32" */,
+				540A9DD12977A68D005893D3 /* XCRemoteSwiftPackageReference "SwiftOTP" */,
+			);
 			productRefGroup = 5410B9E02975C25100E2839E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,8 +172,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540A9DD52977B716005893D3 /* Utils.swift in Sources */,
 				5410B9E52975C25100E2839E /* ContentView.swift in Sources */,
 				5410B9E32975C25100E2839E /* KodeApp.swift in Sources */,
+				54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */,
+				54FF6198297871FD000E5D5E /* AppView.swift in Sources */,
+				54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */,
+				54FF61A129787894000E5D5E /* ProgressBarView.swift in Sources */,
+				540A9DCE29779FD3005893D3 /* Account.swift in Sources */,
+				54FF619E29787522000E5D5E /* AddAccountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +309,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kode;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -277,8 +319,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -307,6 +349,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kode;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -315,8 +359,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -354,6 +398,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		540A9DD12977A68D005893D3 /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lachlanbell/SwiftOTP.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		5410B9F32975C53600E2839E /* XCRemoteSwiftPackageReference "swift-base32" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alja7dali/swift-base32.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		540A9DD22977A68D005893D3 /* SwiftOTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 540A9DD12977A68D005893D3 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
+			productName = SwiftOTP;
+		};
+		5410B9F42975C53600E2839E /* Base32 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5410B9F32975C53600E2839E /* XCRemoteSwiftPackageReference "swift-base32" */;
+			productName = Base32;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5410B9D72975C25100E2839E /* Project object */;
 }
