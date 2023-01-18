@@ -10,8 +10,10 @@ import SwiftUI
 @main
 struct KodeApp: App {
     var body: some Scene {
+        let accountData = AccountData()
+        
         WindowGroup {
-            ContentView()
+            AppView().environmentObject(accountData)
         }
     }
 }
