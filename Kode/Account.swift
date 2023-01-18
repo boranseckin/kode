@@ -11,22 +11,25 @@ import SwiftOTP
 struct Account: Codable, Identifiable {
     var id: UUID
     var secret: String
+    var issuer: String
     var name: String
     var email: String
     var code: String
-    
+
     #if DEBUG
     static let example = Account(
         id: UUID(),
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+        issuer: "Company",
         name: "Test Account",
         email: "boran@boranseckin.com",
         code: "000000"
     )
-    
+
     static let example2 = Account(
         id: UUID(),
-        secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+        secret: "KUOEHG7ANDUFL4NAOIDN3BBV6LEVLT2N",
+        issuer: "",
         name: "Test Account 2",
         email: "boran@boranseckin.com",
         code: "000000"
@@ -36,28 +39,28 @@ struct Account: Codable, Identifiable {
 
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
-    
+
     init() {
         load()
         self.accounts.append(Account.example)
         self.accounts.append(Account.example2)
     }
-    
-    func add(secret: String, name: String, email: String) {
-        accounts.append(Account(id: UUID(), secret: secret, name: name, email: email, code: "000000"))
-        _ = save()
+
+    func add(secret: String, issuer: String, name: String, email: String) -> Bool {
+        accounts.append(Account(id: UUID(), secret: secret, issuer: issuer, name: name, email: email, code: "000000"))
+        return save()
     }
-    
+
     func remove(at offset: IndexSet) {
         accounts.remove(atOffsets: offset)
         _ = save()
     }
-    
+
     func move(source: IndexSet, destination: Int) {
         accounts.move(fromOffsets: source, toOffset: destination)
         _ = save()
     }
-    
+
     func updateCode(account: Account) {
         if let index = accounts.firstIndex(where: { $0.id == account.id }) {
             if let data = base32DecodeToData(accounts[index].secret) {
@@ -67,7 +70,7 @@ class AccountData: ObservableObject {
             }
         }
     }
-    
+
     func save() -> Bool {
         let json = Bundle.main.encode([Account].self, data: accounts)
         
@@ -77,7 +80,7 @@ class AccountData: ObservableObject {
             fatalError(error.localizedDescription)
         }
     }
-    
+
     func load() {
         do {
             if let data = try Data.loadFM(withFilename: "account_data") {

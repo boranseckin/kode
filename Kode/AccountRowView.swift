@@ -17,7 +17,7 @@ struct AccountRowView: View {
     var progress: Double
 
     var body: some View {
-        Section(header: Text("\(account.name)")) {
+        Section(header: account.issuer.isEmpty ? Text("\(account.name)") : Text("\(account.name) • \(account.issuer)")) {
             VStack(alignment: .leading) {
                 HStack {
                     Text("\(account.code)")
@@ -40,6 +40,7 @@ struct AccountRowView: View {
             .contentShape(Rectangle())
             .onTapGesture {
                 UIPasteboard.general.string = account.code
+
                 tap = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     tap = false
