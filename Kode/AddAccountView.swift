@@ -32,9 +32,11 @@ struct AddAccountView: View {
                 Button("Cancel", action: {
                     dismiss()
                 })
+                .keyboardShortcut(.cancelAction)
             }
             .padding()
 
+            // MARK: QR Code Scanner
             if (permission) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", completion: handleScan)
                     .contentShape(Rectangle())
@@ -52,6 +54,7 @@ struct AddAccountView: View {
             }
             #endif
             
+            // MARK: Form
             Form {
                 Section {
                     HStack {
@@ -59,7 +62,9 @@ struct AddAccountView: View {
                         #if os(macOS)
                             .frame(width: 370)
                         #endif
+
                         Divider()
+
                         Button {
                             #if os(macOS)
                             secret = NSPasteboard.general.string(forType: .string) ?? ""
@@ -72,57 +77,59 @@ struct AddAccountView: View {
                             Image(systemName: "doc.on.clipboard")
                         }
                     }
+
                     TextField("Issuer", text: $issuer)
+
                     TextField("Email", text: $email)
                     #if os(iOS)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
                     #endif
+
                     TextField("Label (Optional)", text: $label)
                 }
                 
+                // MARK: Save Button
                 #if os(macOS)
                 HStack {
                     Spacer()
 
                     Button("Save", action: {
-                        if accountData.add(
-                            account: Account(
-                                id: UUID(),
-                                secret: secret,
-                                issuer: issuer,
-                                email: email,
-                                label: label == "" ? nil : label
-                            )
-                        ) {
+                        if (handleSubmit(secret: secret, issuer: issuer, email: email, label: label)) {
                             dismiss()
                         } else {
                             print("Manually adding new account failed.")
                         }
-                    }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                    })
+                    .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                    .keyboardShortcut(.defaultAction)
                 }
                 #else
                 Button("Save", action: {
-                    if accountData.add(
-                        account: Account(
-                            id: UUID(),
-                            secret: secret,
-                            issuer: issuer,
-                            email: email,
-                            label: label == "" ? nil : label
-                        )
-                    ) {
+                    if (handleSubmit(secret: secret, issuer: issuer, email: email, label: label)) {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
                     }
-                }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                })
+                .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                .keyboardShortcut(.defaultAction)
                 #endif
             }
         }
         #if os(macOS)
         .padding()
         #endif
+    }
+    
+    func handleSubmit(secret: String, issuer: String, email: String, label: String) -> Bool {
+        do {
+            let account = try createAccount(secret: secret, issuer: issuer, email: email, label: label)
+            return accountData.add(account: account)
+        } catch {
+            print(error)
+            return false
+        }
     }
     
     #if os(iOS)

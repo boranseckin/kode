@@ -65,7 +65,10 @@ struct SettingsView: View {
                     Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
                 }
                 
-                NavigationLink("Acknowledgment", destination: AcknowledgmentView())
+                NavigationLink("Acknowledgment") {
+                    AcknowledgmentView()
+                        .navigationTitle("Acknowledgment")
+                }
 
                 HStack {
                     Spacer()
@@ -80,7 +83,6 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationTitle("Settings")
         #if os(iOS)
         .listStyle(.insetGrouped)
         #endif

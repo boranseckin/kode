@@ -34,7 +34,7 @@ struct ContentViewMac: View {
                     }
             }
         }
-        .navigationTitle(Text("Kode"))
+        .navigationTitle("Kode")
         .toolbar {
             ToolbarItem {
                 Button {

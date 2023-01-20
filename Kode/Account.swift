@@ -24,6 +24,7 @@ enum Digits: Codable {
     case EIGHT
 }
 
+// MARK: Account
 struct Account: Codable, Identifiable {
     var id: UUID
     var type: Types = .TOTP
@@ -52,6 +53,38 @@ struct Account: Codable, Identifiable {
         email: "boran@boranseckin.com"
     )
     #endif
+}
+
+// MARK: Create Functions
+func createAccount(
+    type: Types = .TOTP,
+    secret: String,
+    issuer: String,
+    algorithm: Algorithms = .SHA1,
+    digits: Digits = .SIX,
+    counter: Int? = nil,
+    email: String,
+    label: String?
+) throws -> Account {
+    guard let _ = base32DecodeToData(secret) else {
+        throw "Invalid secret (cannot decode Base32)."
+    }
+    
+    if (type == .HOTP && counter == nil) {
+        throw "Invalid counter (counter is required for HOTP accounts)."
+    }
+    
+    return Account(
+        id: UUID(),
+        type: type,
+        secret: secret,
+        issuer: issuer,
+        algorithm: algorithm,
+        digits: digits,
+        counter: counter,
+        email: email,
+        label: (label != nil && !label!.isEmpty) ? label : nil
+    )
 }
 
 func createAccountFromURIString(string: String) throws -> Account {
@@ -92,6 +125,7 @@ func createAccountFromURIString(string: String) throws -> Account {
     return Account(id: UUID(), secret: secret, issuer: issuer, email: email)
 }
 
+// MARK: AccountData
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
 

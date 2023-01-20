@@ -38,7 +38,6 @@ struct AcknowledgmentView: View {
                 }
             }
         }
-        .navigationTitle("Acknowledgment")
     }
 }
 

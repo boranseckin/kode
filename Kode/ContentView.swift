@@ -56,7 +56,6 @@ struct ContentView: View {
                     )
                 })
             }
-            .navigationTitle(Text("Kode"))
             .listStyle(.insetGrouped)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -69,11 +68,12 @@ struct ContentView: View {
                         AddAccountView()
                     })
 
-                    NavigationLink(destination: SettingsView()) {
+                    NavigationLink(destination: SettingsView().navigationTitle("Settings")) {
                         Image(systemName: "gear")
                     }
                 }
             }
+            .navigationTitle("Kode")
         }
         .navigationViewStyle(.stack)
         #endif
