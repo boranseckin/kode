@@ -13,7 +13,7 @@ struct KodeApp: App {
         let accountData = AccountData()
         
         WindowGroup {
-            AppView().environmentObject(accountData)
+            ContentView().environmentObject(accountData)
         }
     }
 }

@@ -17,7 +17,11 @@ struct AccountRowView: View {
     var progress: Double
 
     var body: some View {
-        Section(header: account.issuer.isEmpty ? Text("\(account.name)") : Text("\(account.name) • \(account.issuer)")) {
+        Section(
+            header: account.label != nil
+                ? Text("\(account.label!) • \(account.issuer)")
+                : Text("\(account.issuer)")
+        ) {
             VStack(alignment: .leading) {
                 HStack {
                     Text("\(account.code)")
@@ -39,15 +43,24 @@ struct AccountRowView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
+                #if os(macOS)
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(account.code, forType: .string)
+                #else
                 UIPasteboard.general.string = account.code
+                #endif
 
-                tap = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    tap = false
-               }
+                withAnimation(.default) {
+                    tap.toggle()
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    withAnimation(.default) {
+                        tap = false
+                    }
+                }
             }
-            .scaleEffect(tap ? 1.05 : 1)
-            .animation(.spring(response: 0.4, dampingFraction: 0.6), value: tap)
+            .scaleEffect(tap ? 1.01 : 1)
         }
     }
 }

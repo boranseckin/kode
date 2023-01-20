@@ -8,33 +8,88 @@
 import Foundation
 import SwiftOTP
 
+enum Types: Codable {
+    case TOTP
+    case HOTP
+}
+
+enum Algorithms: Codable {
+    case SHA1
+    case SHA256
+    case SHA512
+}
+
+enum Digits: Codable {
+    case SIX
+    case EIGHT
+}
+
 struct Account: Codable, Identifiable {
     var id: UUID
+    var type: Types = .TOTP
     var secret: String
     var issuer: String
-    var name: String
+    var algorithm: Algorithms = .SHA1
+    var digits: Digits = .SIX
+    var counter: Int?
+    var label: String?
     var email: String
-    var code: String
+    var code: String = "000000"
 
     #if DEBUG
     static let example = Account(
         id: UUID(),
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
-        issuer: "Company",
-        name: "Test Account",
-        email: "boran@boranseckin.com",
-        code: "000000"
+        issuer: "Company A",
+        label: "Test Account",
+        email: "boran@boranseckin.com"
     )
 
     static let example2 = Account(
         id: UUID(),
         secret: "KUOEHG7ANDUFL4NAOIDN3BBV6LEVLT2N",
-        issuer: "",
-        name: "Test Account 2",
-        email: "boran@boranseckin.com",
-        code: "000000"
+        issuer: "Company B",
+        email: "boran@boranseckin.com"
     )
     #endif
+}
+
+func createAccountFromURIString(string: String) throws -> Account {
+    if (!string.starts(with: "otpauth://totp")) {
+        throw "Unknown or unsupported QR code."
+    }
+    
+    guard let uri = URL(string: string) else {
+        throw "Not a URI"
+    }
+    
+    var secret = "", issuer = "", email = ""
+
+    let main = substring(str: uri.path(percentEncoded: false), start: 1)
+    if (main.contains(":")) {
+        let components = main.components(separatedBy: ":")
+        issuer = components[0]
+        email = components[1]
+    } else {
+        email = main
+    }
+
+    let queryComponents = URLComponents(string: string)!.queryItems!
+    for component in queryComponents {
+        guard let value = component.value else { continue }
+
+        switch component.name {
+        case "secret":
+            secret = value
+        case "issuer":
+            if (issuer.isEmpty) {
+                issuer = value
+            }
+        default: break
+        }
+    }
+
+    return Account(id: UUID(), secret: secret, issuer: issuer, email: email)
 }
 
 class AccountData: ObservableObject {
@@ -46,8 +101,8 @@ class AccountData: ObservableObject {
         self.accounts.append(Account.example2)
     }
 
-    func add(secret: String, issuer: String, name: String, email: String) -> Bool {
-        accounts.append(Account(id: UUID(), secret: secret, issuer: issuer, name: name, email: email, code: "000000"))
+    func add(account: Account) -> Bool {
+        accounts.append(account)
         return save()
     }
 
@@ -73,7 +128,7 @@ class AccountData: ObservableObject {
 
     func save() -> Bool {
         let json = Bundle.main.encode([Account].self, data: accounts)
-        
+
         do {
             return try Data.saveFM(jsonObject: json, toFilename: "account_data")
         } catch {
