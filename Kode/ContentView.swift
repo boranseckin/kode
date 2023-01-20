@@ -18,6 +18,7 @@ struct ContentView: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
+        #if os(iOS)
         NavigationView {
             List {
                 ForEach(accountData.accounts) { account in
@@ -46,15 +47,16 @@ struct ContentView: View {
                         primaryButton: .destructive(Text("Yes")) {
                             accountData.remove(at: toBeDeleted!)
                             toBeDeleted = nil
+                            showDeleteAlert = false
                         },
                         secondaryButton: .cancel() {
                             toBeDeleted = nil
+                            showDeleteAlert = false
                         }
                     )
                 })
             }
             .navigationTitle(Text("Kode"))
-            #if os(iOS)
             .listStyle(.insetGrouped)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -72,9 +74,9 @@ struct ContentView: View {
                     }
                 }
             }
-            #endif
         }
         .navigationViewStyle(.stack)
+        #endif
     }
 }
 

@@ -60,7 +60,9 @@ struct AccountRowView: View {
                     }
                 }
             }
+            #if os(iOS)
             .scaleEffect(tap ? 1.01 : 1)
+            #endif
         }
     }
 }

@@ -10,6 +10,7 @@
 		540A9DCE29779FD3005893D3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DCD29779FD3005893D3 /* Account.swift */; };
 		540A9DD32977A68D005893D3 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 540A9DD22977A68D005893D3 /* SwiftOTP */; };
 		540A9DD52977B716005893D3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
+		540BDAF2297B0B7400080596 /* ContentViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BDAF1297B0B7400080596 /* ContentViewMac.swift */; };
 		5410B9E32975C25100E2839E /* KodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E22975C25100E2839E /* KodeApp.swift */; };
 		5410B9E52975C25100E2839E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E42975C25100E2839E /* ContentView.swift */; };
 		5410B9E72975C25200E2839E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		540A9DCD29779FD3005893D3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		540A9DD42977B715005893D3 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		540BDAF1297B0B7400080596 /* ContentViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewMac.swift; sourceTree = "<group>"; };
 		5410B9DF2975C25100E2839E /* Kode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410B9E22975C25100E2839E /* KodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodeApp.swift; sourceTree = "<group>"; };
 		5410B9E42975C25100E2839E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				54179DD829789F3400CBFC5E /* Info.plist */,
 				5410B9E22975C25100E2839E /* KodeApp.swift */,
 				5410B9E42975C25100E2839E /* ContentView.swift */,
+				540BDAF1297B0B7400080596 /* ContentViewMac.swift */,
 				54FF61992978721B000E5D5E /* SettingsView.swift */,
 				54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */,
 				54FF61A229787B6F000E5D5E /* AccountRowView.swift */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540BDAF2297B0B7400080596 /* ContentViewMac.swift in Sources */,
 				540A9DD52977B716005893D3 /* Utils.swift in Sources */,
 				54519FB4297AEC65009FA667 /* AcknowledgmentView.swift in Sources */,
 				5410B9E52975C25100E2839E /* ContentView.swift in Sources */,

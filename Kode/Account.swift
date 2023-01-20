@@ -32,8 +32,8 @@ struct Account: Codable, Identifiable {
     var algorithm: Algorithms = .SHA1
     var digits: Digits = .SIX
     var counter: Int?
-    var label: String?
     var email: String
+    var label: String?
     var code: String = "000000"
 
     #if DEBUG
@@ -41,8 +41,8 @@ struct Account: Codable, Identifiable {
         id: UUID(),
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
         issuer: "Company A",
-        label: "Test Account",
-        email: "boran@boranseckin.com"
+        email: "boran@boranseckin.com",
+        label: "Test Account"
     )
 
     static let example2 = Account(
@@ -97,8 +97,6 @@ class AccountData: ObservableObject {
 
     init() {
         load()
-        self.accounts.append(Account.example)
-        self.accounts.append(Account.example2)
     }
 
     func add(account: Account) -> Bool {

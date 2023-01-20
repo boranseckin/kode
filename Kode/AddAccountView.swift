@@ -26,6 +26,7 @@ struct AddAccountView: View {
 
     var body: some View {
         VStack {
+            #if os(iOS)
             HStack() {
                 Spacer()
                 Button("Cancel", action: {
@@ -34,7 +35,6 @@ struct AddAccountView: View {
             }
             .padding()
 
-            #if os(iOS)
             if (permission) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", completion: handleScan)
                     .contentShape(Rectangle())
@@ -56,6 +56,9 @@ struct AddAccountView: View {
                 Section {
                     HStack {
                         TextField("Secret Key", text: $secret)
+                        #if os(macOS)
+                            .frame(width: 370)
+                        #endif
                         Divider()
                         Button {
                             #if os(macOS)
@@ -78,15 +81,48 @@ struct AddAccountView: View {
                     TextField("Label (Optional)", text: $label)
                 }
                 
+                #if os(macOS)
+                HStack {
+                    Spacer()
+
+                    Button("Save", action: {
+                        if accountData.add(
+                            account: Account(
+                                id: UUID(),
+                                secret: secret,
+                                issuer: issuer,
+                                email: email,
+                                label: label == "" ? nil : label
+                            )
+                        ) {
+                            dismiss()
+                        } else {
+                            print("Manually adding new account failed.")
+                        }
+                    }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                }
+                #else
                 Button("Save", action: {
-                    if accountData.add(account: Account(id: UUID(), secret: secret, issuer: issuer, label: label, email: email)) {
+                    if accountData.add(
+                        account: Account(
+                            id: UUID(),
+                            secret: secret,
+                            issuer: issuer,
+                            email: email,
+                            label: label == "" ? nil : label
+                        )
+                    ) {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
                     }
                 }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                #endif
             }
         }
+        #if os(macOS)
+        .padding()
+        #endif
     }
     
     #if os(iOS)

@@ -13,7 +13,24 @@ struct KodeApp: App {
         let accountData = AccountData()
         
         WindowGroup {
+            #if os(iOS)
             ContentView().environmentObject(accountData)
+            #else
+            ContentViewMac().environmentObject(accountData)
+                .frame(width: 300)
+            #endif
         }
+        #if os(macOS)
+        .windowResizability(.contentSize)
+        #endif
+        
+        #if os(macOS)
+        Settings {
+            NavigationStack {
+                SettingsView()
+                    .frame(width: 400, height: 400)
+            }
+        }
+        #endif
     }
 }
