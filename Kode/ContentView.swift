@@ -74,6 +74,7 @@ struct ContentView: View {
             }
             #endif
         }
+        .navigationViewStyle(.stack)
     }
 }
 

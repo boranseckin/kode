@@ -50,12 +50,12 @@ struct AccountRowView: View {
                 UIPasteboard.general.string = account.code
                 #endif
 
-                withAnimation(.default) {
+                withAnimation(.linear(duration: 0.2)) {
                     tap.toggle()
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    withAnimation(.default) {
+                    withAnimation(.linear(duration: 0.2)) {
                         tap = false
                     }
                 }

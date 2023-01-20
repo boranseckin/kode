@@ -64,6 +64,8 @@ struct SettingsView: View {
                     Spacer()
                     Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
                 }
+                
+                NavigationLink("Acknowledgment", destination: AcknowledgmentView())
 
                 HStack {
                     Spacer()

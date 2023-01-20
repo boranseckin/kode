@@ -25,74 +25,68 @@ struct AddAccountView: View {
     @State private var showScanErrorAlert = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack() {
-                    Spacer()
-                    Button("Cancel", action: {
-                        dismiss()
-                    })
-                }
-                .padding()
+        VStack {
+            HStack() {
+                Spacer()
+                Button("Cancel", action: {
+                    dismiss()
+                })
+            }
+            .padding()
 
-                #if os(iOS)
-                if (permission) {
-                    CodeScannerView(codeTypes: [.qr], simulatedData: "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", completion: handleScan)
-                        .contentShape(Rectangle())
-                        .padding()
-                    Text("Scan the QR code to add a new account\nor manually enter the details below.")
+            #if os(iOS)
+            if (permission) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", completion: handleScan)
+                    .contentShape(Rectangle())
+                    .padding()
+                Text("Scan the QR code to add a new account\nor manually enter the details below.")
+                .multilineTextAlignment(.center)
+            } else {
+                Text("Camera access is not permitted. Authorize camera use in the app settings or manually enter the details below.")
                     .multilineTextAlignment(.center)
-                } else {
-                    Text("Camera access is not permitted. Authorize camera use in the app settings or manually enter the details below.")
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    Spacer()
-                    Button("App Settings", action: {
-                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-                    })
-                }
-                #endif
-                
-                Form {
-                    Section {
-                        HStack {
-                            TextField("Secret Key", text: $secret)
-                            Divider()
-                            Button {
-                                #if os(macOS)
-                                secret = NSPasteboard.general.string(forType: .string) ?? ""
-                                #else
-                                if UIPasteboard.general.hasStrings {
-                                    secret = UIPasteboard.general.string ?? ""
-                                }
-                                #endif
-                            } label: {
-                                Image(systemName: "doc.on.clipboard")
+                    .padding(.horizontal)
+                Spacer()
+                Button("App Settings", action: {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                })
+            }
+            #endif
+            
+            Form {
+                Section {
+                    HStack {
+                        TextField("Secret Key", text: $secret)
+                        Divider()
+                        Button {
+                            #if os(macOS)
+                            secret = NSPasteboard.general.string(forType: .string) ?? ""
+                            #else
+                            if UIPasteboard.general.hasStrings {
+                                secret = UIPasteboard.general.string ?? ""
                             }
+                            #endif
+                        } label: {
+                            Image(systemName: "doc.on.clipboard")
                         }
-                        TextField("Issuer", text: $issuer)
-                        TextField("Email", text: $email)
-                        #if os(iOS)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.emailAddress)
-                        #endif
-                        TextField("Label (Optional)", text: $label)
                     }
-                    
-                    Button("Save", action: {
-                        if accountData.add(account: Account(id: UUID(), secret: secret, issuer: issuer, label: label, email: email)) {
-                            dismiss()
-                        } else {
-                            print("Manually adding new account failed.")
-                        }
-                    }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                    TextField("Issuer", text: $issuer)
+                    TextField("Email", text: $email)
+                    #if os(iOS)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                    #endif
+                    TextField("Label (Optional)", text: $label)
                 }
+                
+                Button("Save", action: {
+                    if accountData.add(account: Account(id: UUID(), secret: secret, issuer: issuer, label: label, email: email)) {
+                        dismiss()
+                    } else {
+                        print("Manually adding new account failed.")
+                    }
+                }).disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
             }
         }
-        .navigationTitle("New Account")
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
     }
     
     #if os(iOS)
