@@ -21,7 +21,7 @@ struct SettingsView: View {
             Section {
                 Toggle("iCloud Sync", isOn: $icloud)
             }
-            
+
             Section(header: Text("Debug")) {
                 Button("Save", action: {
                     if !accountData.save() {

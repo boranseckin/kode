@@ -27,9 +27,9 @@ struct AccountRowView: View {
                     Text("\(account.code)")
                         .font(.title)
                         .bold()
-
+                    
                     Spacer()
-
+                    
                     if (tap) {
                         Text("Copied")
                     }

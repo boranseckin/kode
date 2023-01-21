@@ -14,26 +14,32 @@ struct ContentView: View {
     @State private var showAdd = false
     @State private var showDeleteAlert = false
     @State private var toBeDeleted: IndexSet?
+    @State private var editMode: EditMode = .inactive
 
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        #if os(iOS)
         NavigationView {
             List {
                 ForEach(accountData.accounts) { account in
-                    AccountRowView(account: account, progress: progress)
-                        .onReceive(timer) { time in
-                            progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
-                            
-                            let seconds = Calendar.current.component(.second, from: time)
-                            if (seconds == 0 || seconds == 30) {
+                    if (editMode == .active) {
+                        AccountEditRowView(account: account)
+                    } else {
+                        AccountRowView(account: account, progress: progress)
+                            .moveDisabled(true)
+                            .deleteDisabled(true)
+                            .onReceive(timer) { time in
+                                progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
+                                
+                                let seconds = Calendar.current.component(.second, from: time)
+                                if (seconds == 0 || seconds == 30) {
+                                    accountData.updateCode(account: account)
+                                }
+                            }
+                            .onAppear() {
                                 accountData.updateCode(account: account)
                             }
-                        }
-                        .onAppear() {
-                            accountData.updateCode(account: account)
-                        }
+                    }
                 }
                 .onMove(perform: accountData.move)
                 .onDelete(perform: { index in
@@ -58,6 +64,10 @@ struct ContentView: View {
             }
             .listStyle(.insetGrouped)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         showAdd.toggle()
@@ -73,10 +83,10 @@ struct ContentView: View {
                     }
                 }
             }
+            .environment(\.editMode, $editMode)
             .navigationTitle("Kode")
         }
         .navigationViewStyle(.stack)
-        #endif
     }
 }
 
