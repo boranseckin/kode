@@ -37,6 +37,7 @@ struct AccountRowView: View {
                 }
                 
                 Text("\(account.email)")
+                    .lineLimit(1)
                     .font(.subheadline)
 
                 ProgressView(value: progress, total: 30)

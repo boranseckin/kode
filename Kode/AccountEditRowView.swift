@@ -10,19 +10,38 @@ import Accounts
 
 struct AccountEditRowView: View {
     @EnvironmentObject var accountData: AccountData
-
+    
     var account: Account
+    
+    @State private var isShowingDetailView = false
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if (account.label != nil) {
-                Text("\(account.label!)")
+        HStack {
+            VStack(alignment: .leading) {
+                if (account.label != nil) {
+                    Text("\(account.label!)")
+                }
+                
+                Text("\(account.issuer)")
+                
+                Text("\(account.email)")
+                    .font(.subheadline)
             }
-
-            Text("\(account.issuer)")
             
-            Text("\(account.email)")
-                .font(.subheadline)
+            Spacer()
+
+            Button {
+                isShowingDetailView.toggle()
+            } label: {
+                Image(systemName: "pencil")
+                    .font(.title2)
+            }.sheet(isPresented: $isShowingDetailView, content: {
+                AccountDetailView(account: account)
+            })
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isShowingDetailView = true
         }
     }
 }

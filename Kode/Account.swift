@@ -147,6 +147,15 @@ class AccountData: ObservableObject {
         accounts.move(fromOffsets: source, toOffset: destination)
         _ = save()
     }
+    
+    func modify(account: Account) -> Bool {
+        if let i = accounts.firstIndex(where: { $0.id == account.id }) {
+            accounts[i] = account
+            return save()
+        }
+        
+        return false
+    }
 
     func updateCode(account: Account) {
         if let index = accounts.firstIndex(where: { $0.id == account.id }) {
