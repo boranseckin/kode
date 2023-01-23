@@ -22,10 +22,10 @@ struct AccountDetailView: View {
         NavigationView {
             Form {
                 Section(header: Text("Secret Key")) {
-                    TextField("Secret Key", text: $secret)
+                    Text(secret)
                         .lineLimit(1)
                         .colorMultiply(.gray)
-                        .disabled(true)
+                        .textSelection(.enabled)
                 }
                 
                 Section(header: Text("Issuer")) {

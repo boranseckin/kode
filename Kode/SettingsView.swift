@@ -9,12 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var accountData: AccountData
-
-    @Environment(\.openURL) var openURL
     
     @AppStorage("iCloudSync") private var icloud = false
-    
+
     @State private var checkStatus: Bool?
+    @State private var showFullVersion: Bool = false
 
     var body: some View {
         List {
@@ -22,6 +21,7 @@ struct SettingsView: View {
                 Toggle("iCloud Sync", isOn: $icloud)
             }
 
+            #if DEBUG
             Section(header: Text("Debug")) {
                 Button("Save", action: {
                     if !accountData.save() {
@@ -45,9 +45,9 @@ struct SettingsView: View {
                     Button("Check", action: {
                         checkStatus = Data.checkFM(atPath: "account_data")
                     })
-                    
+
                     Spacer()
-                    
+
                     if (checkStatus != nil && checkStatus!) {
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(Color.green)
@@ -57,29 +57,39 @@ struct SettingsView: View {
                     }
                 }
             }
+            #endif
             
             Section(header: Text("Info")) {
                 HStack {
                     Text("Version")
                     Spacer()
-                    Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
-                }
-                
-                NavigationLink("Acknowledgment") {
-                    AcknowledgmentView()
-                        .navigationTitle("Acknowledgment")
-                }
-
-                HStack {
-                    Spacer()
-                    Image(systemName: "person.circle")
-                    Text("Made by Boran Seckin")
-                        .font(.subheadline)
-                    Spacer()
+                    if (showFullVersion) {
+                        Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
+                    } else {
+                        Text(Bundle.main.appVersionLong)
+                    }
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    openURL(URL(string: "https://boranseckin.com")!)
+                    showFullVersion.toggle()
+                }
+
+                NavigationLink("Acknowledgments") {
+                    AcknowledgmentView()
+                        .navigationTitle("Acknowledgments")
+                }
+
+                HStack(alignment: .center) {
+                    Spacer()
+                    Link(destination: URL(string: "https://boranseckin.com")!) {
+                        HStack {
+                            Image(systemName: "person.circle")
+                            Text("Made by Boran Seckin")
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    Spacer()
                 }
             }
         }

@@ -322,7 +322,8 @@
 				INFOPLIST_FILE = Kode/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is needed for scanning QR codes.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required for scanning QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceID access is required for biometric authentication.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -364,7 +365,8 @@
 				INFOPLIST_FILE = Kode/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is needed for scanning QR codes.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required for scanning QR codes.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "FaceID access is required for biometric authentication.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
