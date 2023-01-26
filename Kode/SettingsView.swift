@@ -35,7 +35,7 @@ struct SettingsView: View {
 
                 Button("Delete", action: {
                     do {
-                        try Data.deleteFM(atPath: "account_data")
+                        try Data.deleteFM(atPath: "account_ids")
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -43,7 +43,7 @@ struct SettingsView: View {
 
                 HStack {
                     Button("Check", action: {
-                        checkStatus = Data.checkFM(atPath: "account_data")
+                        checkStatus = Data.checkFM(atPath: "account_ids")
                     })
 
                     Spacer()

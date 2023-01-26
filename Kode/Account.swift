@@ -128,6 +128,7 @@ func createAccountFromURIString(string: String) throws -> Account {
 // MARK: AccountData
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
+    var ids = [UUID]()
 
     init() {
         load()
@@ -161,17 +162,28 @@ class AccountData: ObservableObject {
         if let index = accounts.firstIndex(where: { $0.id == account.id }) {
             if let data = base32DecodeToData(accounts[index].secret) {
                 if let totp = TOTP(secret: data) {
-                    accounts[index].code = totp.generate(time: Date())!
+                    accounts[index].code = totp.generate(time: .now)!
                 }
             }
         }
     }
 
     func save() -> Bool {
-        let json = Bundle.main.encode([Account].self, data: accounts)
+        do {
+            ids = []
+            try accounts.forEach({ account in
+                let data = Bundle.main.encode(Account.self, data: account)
+                try KeychainHelper.standard.save(value: data, account: account.id)
+                ids.append(account.id)
+            })
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        let json = Bundle.main.encode([UUID].self, data: ids)
 
         do {
-            return try Data.saveFM(jsonObject: json, toFilename: "account_data")
+            return try Data.saveFM(jsonObject: json, toFilename: "account_ids")
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -179,9 +191,16 @@ class AccountData: ObservableObject {
 
     func load() {
         do {
-            if let data = try Data.loadFM(withFilename: "account_data") {
-                let json = Bundle.main.decode([Account].self, from: data)
-                accounts = json
+            accounts = []
+            if let ids = try Data.loadFM(withFilename: "account_ids") {
+                let json = Bundle.main.decode([UUID].self, from: ids)
+                
+                json.forEach { id in
+                    if let data = KeychainHelper.standard.get(account: id) {
+                        let account = Bundle.main.decode(Account.self, from: data.data(using: .utf8)!)
+                        accounts.append(account)
+                    }
+                }
             }
         } catch {
             accounts = []
