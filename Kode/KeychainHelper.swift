@@ -13,6 +13,7 @@ final class KeychainHelper {
     func save(value: Data, account: UUID) throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecUseDataProtectionKeychain: true,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecValueData: value
@@ -23,6 +24,7 @@ final class KeychainHelper {
         if status == errSecDuplicateItem {
             let updateQuery = [
                 kSecClass: kSecClassGenericPassword,
+                kSecUseDataProtectionKeychain: true,
                 kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
                 kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             ] as CFDictionary
@@ -44,6 +46,7 @@ final class KeychainHelper {
     func get(account: UUID) throws -> Data {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecUseDataProtectionKeychain: true,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecReturnData: true
         ] as CFDictionary
@@ -61,6 +64,7 @@ final class KeychainHelper {
     func getAll() throws -> [Data] {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecUseDataProtectionKeychain: true,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecMatchLimit: kSecMatchLimitAll,
             kSecReturnData: true
@@ -83,6 +87,7 @@ final class KeychainHelper {
     func delete(account: UUID) throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecUseDataProtectionKeychain: true,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!
         ] as CFDictionary
         
@@ -95,6 +100,7 @@ final class KeychainHelper {
     func deleteAll() throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecUseDataProtectionKeychain: true,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!
         ] as CFDictionary
         
