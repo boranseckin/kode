@@ -36,6 +36,7 @@ struct Account: Codable, Identifiable {
     var email: String
     var label: String?
     var code: String = "000000"
+    var order: Int = 999
 
     #if DEBUG
     static let example = Account(
@@ -131,31 +132,33 @@ class AccountData: ObservableObject {
     var ids = [UUID]()
 
     init() {
-        load()
+        loadAll()
     }
 
-    func add(account: Account) -> Bool {
-        accounts.append(account)
-        return save()
+    func add(account: Account) {
+        var newAccount = account
+        newAccount.order = accounts.count
+        accounts.append(newAccount)
+        save(id: account.id)
     }
 
     func remove(at offset: IndexSet) {
+        for index in offset {
+            delete(id: accounts[index].id)
+        }
         accounts.remove(atOffsets: offset)
-        _ = save()
     }
 
     func move(source: IndexSet, destination: Int) {
         accounts.move(fromOffsets: source, toOffset: destination)
-        _ = save()
+        saveAll()
     }
     
-    func modify(account: Account) -> Bool {
-        if let i = accounts.firstIndex(where: { $0.id == account.id }) {
-            accounts[i] = account
-            return save()
+    func modify(account: Account) {
+        if let index = accounts.firstIndex(where: { $0.id == account.id }) {
+            accounts[index] = account
+            save(id: account.id)
         }
-        
-        return false
     }
 
     func updateCode(account: Account) {
@@ -168,42 +171,66 @@ class AccountData: ObservableObject {
         }
     }
 
-    func save() -> Bool {
+    func save(id: UUID) {
         do {
-            ids = []
-            try accounts.forEach({ account in
-                let data = Bundle.main.encode(Account.self, data: account)
-                try KeychainHelper.standard.save(value: data, account: account.id)
-                ids.append(account.id)
-            })
+            if let index = accounts.firstIndex(where: { $0.id == id }) {
+                let data = Bundle.main.encode(Account.self, data: accounts[index])
+                try KeychainHelper.standard.save(value: data, account: id)
+                print("Saved: \(id)")
+            }
         } catch {
-            print(error.localizedDescription)
+            fatalError("Failed to save keychain data: \(error)")
         }
-        
-        let json = Bundle.main.encode([UUID].self, data: ids)
-
+    }
+    
+    func delete(id: UUID) {
         do {
-            return try Data.saveFM(jsonObject: json, toFilename: "account_ids")
+            try KeychainHelper.standard.delete(account: id)
+            print("Deleted: \(id)")
         } catch {
-            fatalError(error.localizedDescription)
+            fatalError("Failed to delete keychain data: \(error)")
+        }
+    }
+    
+    func saveAll() {
+        do {
+            for (i, account) in accounts.enumerated() {
+                var orderedAccount = account
+                orderedAccount.order = i
+                let data = Bundle.main.encode(Account.self, data: orderedAccount)
+                try KeychainHelper.standard.save(value: data, account: orderedAccount.id)
+                print("Saved (All): \(orderedAccount.id) - \(orderedAccount.order) (\(account.order))")
+            }
+        } catch {
+            fatalError("Failed to save all keychain data: \(error)")
         }
     }
 
-    func load() {
+    func loadAll() {
         do {
+            let fetchedAccounts = try KeychainHelper.standard.getAll()
+
             accounts = []
-            if let ids = try Data.loadFM(withFilename: "account_ids") {
-                let json = Bundle.main.decode([UUID].self, from: ids)
-                
-                json.forEach { id in
-                    if let data = KeychainHelper.standard.get(account: id) {
-                        let account = Bundle.main.decode(Account.self, from: data.data(using: .utf8)!)
-                        accounts.append(account)
-                    }
+            for fetchedAccount in fetchedAccounts {
+                let account = Bundle.main.decode(Account.self, from: fetchedAccount)
+                if !accounts.contains(where: { $0.id == account.id }) {
+                    print("Loaded: \(account.id) - \(account.order)")
+                    accounts.append(account)
                 }
             }
+            accounts.sort(by: { $0.order < $1.order })
         } catch {
+            fatalError("Failed to retrieve keychain data: \(error)")
+        }
+    }
+    
+    func deleteAll() {
+        do {
+            try KeychainHelper.standard.deleteAll()
             accounts = []
+            print("Deleted all!")
+        } catch {
+            fatalError("Failed to delete all keychain data: \(error)")
         }
     }
 }

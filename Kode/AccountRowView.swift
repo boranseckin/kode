@@ -27,6 +27,9 @@ struct AccountRowView: View {
                     Text("\(account.code)")
                         .font(.title)
                         .bold()
+                        #if os(macOS)
+                        .textSelection(.enabled)
+                        #endif
                     
                     Spacer()
                     

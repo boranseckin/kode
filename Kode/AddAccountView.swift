@@ -125,7 +125,8 @@ struct AddAccountView: View {
     func handleSubmit(secret: String, issuer: String, email: String, label: String) -> Bool {
         do {
             let account = try createAccount(secret: secret, issuer: issuer, email: email, label: label)
-            return accountData.add(account: account)
+            accountData.add(account: account)
+            return true
         } catch {
             print(error)
             return false
@@ -137,11 +138,8 @@ struct AddAccountView: View {
         switch result {
         case .success(let result):
             if let account = try? createAccountFromURIString(string: result.string) {
-                if accountData.add(account: account) {
-                    dismiss()
-                } else {
-                    print("Adding new account failed.")
-                }
+                accountData.add(account: account)
+                dismiss()
             }
         case .failure(let error):
             switch error {

@@ -23,23 +23,11 @@ struct SettingsView: View {
 
             #if DEBUG
             Section(header: Text("Debug")) {
-                Button("Save", action: {
-                    if !accountData.save() {
-                        fatalError("Failed to save")
-                    }
-                })
+                Button("Save", action: accountData.saveAll)
 
-                Button("Load", action: {
-                    accountData.load()
-                })
+                Button("Load", action: accountData.loadAll)
 
-                Button("Delete", action: {
-                    do {
-                        try Data.deleteFM(atPath: "account_ids")
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                })
+                Button("Delete", action: accountData.deleteAll)
 
                 HStack {
                     Button("Check", action: {

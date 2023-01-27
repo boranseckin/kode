@@ -51,6 +51,7 @@ struct AccountDetailView: View {
                 label = account.label ?? ""
             }
             .toolbar {
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         var newAccount = account
@@ -61,6 +62,7 @@ struct AccountDetailView: View {
                         dismiss()
                     }
                 }
+                #endif
             }
         }
     }

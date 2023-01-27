@@ -29,6 +29,7 @@ struct KodeApp: App {
             NavigationStack {
                 SettingsView()
                     .frame(width: 400, height: 400)
+                    .environmentObject(accountData)
             }
         }
         #endif

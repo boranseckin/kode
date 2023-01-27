@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct ContentView: View {
     @EnvironmentObject var accountData: AccountData
 
@@ -97,3 +98,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environmentObject(accountData)
     }
 }
+#endif

@@ -13,6 +13,7 @@ final class KeychainHelper {
     func save(value: Data, account: UUID) throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
+            kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecValueData: value
         ] as CFDictionary
@@ -22,6 +23,7 @@ final class KeychainHelper {
         if status == errSecDuplicateItem {
             let updateQuery = [
                 kSecClass: kSecClassGenericPassword,
+                kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
                 kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             ] as CFDictionary
             let updateData = [kSecValueData: value] as CFDictionary
@@ -39,7 +41,7 @@ final class KeychainHelper {
         }
     }
     
-    func get(account: UUID) -> String? {
+    func get(account: UUID) throws -> Data {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
@@ -49,13 +51,33 @@ final class KeychainHelper {
         var result: AnyObject?
         let status = SecItemCopyMatching(query, &result)
         
-        if status == errSecSuccess {
-            if let data = result as? Data {
-                return String(data: data, encoding: .utf8)
-            }
+        guard status == errSecSuccess else {
+            throw "Unable to retrieve data from the keychain. (\(status))"
         }
         
-        return nil
+        return result as! Data
+    }
+    
+    func getAll() throws -> [Data] {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
+            kSecMatchLimit: kSecMatchLimitAll,
+            kSecReturnData: true
+        ] as CFDictionary
+
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query, &result)
+        
+        if status == errSecItemNotFound {
+            return Array<Data>()
+        }
+
+        guard status == errSecSuccess else {
+            throw "Unable to retrieve all data from the keychain. (\(status))"
+        }
+
+        return result as! CFArray as! Array<Data>
     }
     
     func delete(account: UUID) throws {
@@ -66,7 +88,23 @@ final class KeychainHelper {
         
         let status = SecItemDelete(query)
         guard status == errSecSuccess else {
-            throw "Unable to delete data from the keychain."
+            throw "Unable to delete data from the keychain. (\(status))"
+        }
+    }
+    
+    func deleteAll() throws {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrLabel: "KodeAccount".data(using: .utf8)!
+        ] as CFDictionary
+        
+        let status = SecItemDelete(query)
+        
+        guard status == errSecSuccess else {
+            if status == errSecItemNotFound {
+                return
+            }
+            throw "Unable to delete all data from the keychain. (\(status))"
         }
     }
 }
