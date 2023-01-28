@@ -206,6 +206,8 @@ class AccountData: ObservableObject {
 
             accounts = []
             let account = Bundle.main.decode(Account.self, from: fetchedAccount)
+            updateCode(account: account)
+
             let index = accounts.firstIndex(where: { $0.id == account.id })
             if index == nil {
                 print("Loaded: \(account.id) - \(account.order)")
@@ -228,6 +230,7 @@ class AccountData: ObservableObject {
                 let account = Bundle.main.decode(Account.self, from: fetchedAccount)
                 if !accounts.contains(where: { $0.id == account.id }) {
                     print("Loaded: \(account.id) - \(account.order)")
+                    updateCode(account: account)
                     accounts.append(account)
                 }
             }

@@ -38,7 +38,7 @@ extension Bundle {
 
         return encoded
     }
-    
+
     public var appBuild: String         { getInfo("CFBundleVersion") }
     public var appVersionLong: String   { getInfo("CFBundleShortVersionString") }
     public var appVersionShort: String  { getInfo("CFBundleShortVersion") }

@@ -27,11 +27,17 @@ struct KodeApp: App {
         #if os(macOS)
         Settings {
             NavigationStack {
-                SettingsView()
-                    .frame(width: 400, height: 400)
+                SettingsViewMac()
+                    .frame(width: 300)
                     .environmentObject(accountData)
             }
         }
+        
+        Window("Acknowledgments", id: "acknowledgments") {
+            AcknowledgmentView()
+                .frame(width: 300, height: 300)
+        }
+        .windowResizability(.contentSize)
         #endif
     }
 }

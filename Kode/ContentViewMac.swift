@@ -20,7 +20,7 @@ struct ContentViewMac: View {
     var body: some View {
         List {
             ForEach(accountData.accounts) { account in
-                AccountRowView(account: account, progress: progress)
+                AccountRowViewMac(account: account, progress: progress)
                     .onReceive(timer) { time in
                         progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
                         
