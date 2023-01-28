@@ -43,7 +43,7 @@ struct ContentViewMac: View {
                     Image(systemName: "plus")
                         .font(.title2)
                 }.sheet(isPresented: $showAdd, content: {
-                    AddAccountView()
+                    AccountAddView()
                 })
             }
         }

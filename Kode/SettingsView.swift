@@ -19,6 +19,10 @@ struct SettingsView: View {
         List {
             Section {
                 Toggle("iCloud Sync", isOn: $icloud)
+                    .onChange(of: icloud, perform: { value in
+                        accountData.saveAll()
+                        accountData.loadAll()
+                    })
             }
 
             #if DEBUG

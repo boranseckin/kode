@@ -171,6 +171,7 @@ class AccountData: ObservableObject {
         }
     }
 
+    // MARK: SAVE
     func save(id: UUID) {
         do {
             if let index = accounts.firstIndex(where: { $0.id == id }) {
@@ -180,15 +181,6 @@ class AccountData: ObservableObject {
             }
         } catch {
             fatalError("Failed to save keychain data: \(error)")
-        }
-    }
-    
-    func delete(id: UUID) {
-        do {
-            try KeychainHelper.standard.delete(account: id)
-            print("Deleted: \(id)")
-        } catch {
-            fatalError("Failed to delete keychain data: \(error)")
         }
     }
     
@@ -205,7 +197,28 @@ class AccountData: ObservableObject {
             fatalError("Failed to save all keychain data: \(error)")
         }
     }
+    
+    
+    // MARK: LOAD
+    func load(id: UUID) {
+        do {
+            let fetchedAccount = try KeychainHelper.standard.get(account: id)
 
+            accounts = []
+            let account = Bundle.main.decode(Account.self, from: fetchedAccount)
+            let index = accounts.firstIndex(where: { $0.id == account.id })
+            if index == nil {
+                print("Loaded: \(account.id) - \(account.order)")
+                accounts.append(account)
+            } else {
+                accounts[index!] = account
+            }
+            accounts.sort(by: { $0.order < $1.order })
+        } catch {
+            fatalError("Failed to retrieve keychain data: \(error)")
+        }
+    }
+    
     func loadAll() {
         do {
             let fetchedAccounts = try KeychainHelper.standard.getAll()
@@ -221,6 +234,16 @@ class AccountData: ObservableObject {
             accounts.sort(by: { $0.order < $1.order })
         } catch {
             fatalError("Failed to retrieve keychain data: \(error)")
+        }
+    }
+    
+    // MARK: DELETE
+    func delete(id: UUID) {
+        do {
+            try KeychainHelper.standard.delete(account: id)
+            print("Deleted: \(id)")
+        } catch {
+            fatalError("Failed to delete keychain data: \(error)")
         }
     }
     

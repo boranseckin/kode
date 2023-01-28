@@ -6,25 +6,31 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class KeychainHelper {
     static let standard = KeychainHelper()
     
+    @AppStorage("iCloudSync") private var icloud = false
+    
+    // MARK: SAVE
     func save(value: Data, account: UUID) throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecUseDataProtectionKeychain: true,
+            kSecAttrSynchronizable: icloud,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecValueData: value
         ] as CFDictionary
-        
+
         let status = SecItemAdd(query, nil)
         
         if status == errSecDuplicateItem {
             let updateQuery = [
                 kSecClass: kSecClassGenericPassword,
                 kSecUseDataProtectionKeychain: true,
+                kSecAttrSynchronizable: icloud,
                 kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
                 kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             ] as CFDictionary
@@ -43,10 +49,12 @@ final class KeychainHelper {
         }
     }
     
+    // MARK: GET
     func get(account: UUID) throws -> Data {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecUseDataProtectionKeychain: true,
+            kSecAttrSynchronizable: icloud,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecReturnData: true
         ] as CFDictionary
@@ -61,10 +69,12 @@ final class KeychainHelper {
         return result as! Data
     }
     
+    // MARK: GET ALL
     func getAll() throws -> [Data] {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecUseDataProtectionKeychain: true,
+            kSecAttrSynchronizable: icloud,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecMatchLimit: kSecMatchLimitAll,
             kSecReturnData: true
@@ -84,10 +94,12 @@ final class KeychainHelper {
         return result as! CFArray as! Array<Data>
     }
     
+    // MARK: DELETE
     func delete(account: UUID) throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecUseDataProtectionKeychain: true,
+            kSecAttrSynchronizable: icloud,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!
         ] as CFDictionary
         
@@ -97,10 +109,12 @@ final class KeychainHelper {
         }
     }
     
+    // MARK: DELETE ALL
     func deleteAll() throws {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecUseDataProtectionKeychain: true,
+            kSecAttrSynchronizable: icloud,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!
         ] as CFDictionary
         

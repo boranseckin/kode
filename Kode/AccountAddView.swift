@@ -11,7 +11,7 @@ import SwiftUI
 import CodeScanner
 #endif
 
-struct AddAccountView: View {
+struct AccountAddView: View {
     @EnvironmentObject var accountData: AccountData
     @Environment(\.dismiss) var dismiss
 
@@ -122,6 +122,7 @@ struct AddAccountView: View {
         #endif
     }
     
+    // MARK: Handlers
     func handleSubmit(secret: String, issuer: String, email: String, label: String) -> Bool {
         do {
             let account = try createAccount(secret: secret, issuer: issuer, email: email, label: label)
@@ -137,9 +138,12 @@ struct AddAccountView: View {
     func handleScan(result: Result<ScanResult, ScanError>) {
         switch result {
         case .success(let result):
-            if let account = try? createAccountFromURIString(string: result.string) {
+            do {
+                let account = try createAccountFromURIString(string: result.string)
                 accountData.add(account: account)
                 dismiss()
+            } catch {
+                print(error)
             }
         case .failure(let error):
             switch error {
@@ -154,10 +158,10 @@ struct AddAccountView: View {
     #endif
 }
 
-struct AddAccountView_Previews: PreviewProvider {
+struct AccountAddView_Previews: PreviewProvider {
     static let accountData = AccountData()
 
     static var previews: some View {
-        AddAccountView().environmentObject(accountData)
+        AccountAddView().environmentObject(accountData)
     }
 }

@@ -76,7 +76,7 @@ struct ContentView: View {
                         Image(systemName: "plus")
                             .font(.title2)
                     }.sheet(isPresented: $showAdd, content: {
-                        AddAccountView()
+                        AccountAddView()
                     })
 
                     NavigationLink(destination: SettingsView().navigationTitle("Settings")) {
