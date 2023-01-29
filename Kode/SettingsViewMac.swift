@@ -60,6 +60,7 @@ struct SettingsViewMac: View {
                 Image("Icon")
                     .resizable()
                     .frame(width: 100, height: 100)
+                    .cornerRadius(20)
                 
                 Text("Kode App")
                     .font(.title3)
