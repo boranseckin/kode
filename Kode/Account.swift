@@ -133,7 +133,7 @@ class AccountData: ObservableObject {
     init() {
         loadAll()
 
-        let timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
+        Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
             self.loadAll()
         }
     }

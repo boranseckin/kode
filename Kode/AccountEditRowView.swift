@@ -55,6 +55,7 @@ struct AccountEditRowView: View {
                 showDeleteAlert.toggle()
             } label: {
                 Image(systemName: "trash")
+                    .foregroundColor(.red)
             }.alert(isPresented: $showDeleteAlert, content: {
                 Alert(
                     title: Text("Are you sure you want to delete this account?"),
