@@ -22,7 +22,17 @@
 		54522D972984EDEF00D46D0B /* SettingsViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54522D962984EDEF00D46D0B /* SettingsViewMac.swift */; };
 		54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671930298501CC0079F4D7 /* AccountRowViewMac.swift */; };
 		547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */; };
+		547A32A4298618F200B5DD69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A32A3298618F200B5DD69 /* ContentView.swift */; };
+		547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A5298618F300B5DD69 /* Assets.xcassets */; };
+		547A32A9298618F300B5DD69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A8298618F300B5DD69 /* Preview Assets.xcassets */; };
+		547A32AD298619EE00B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
+		547A32AE29861A0900B5DD69 /* KodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E22975C25100E2839E /* KodeApp.swift */; };
+		547A32AF29861A0C00B5DD69 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DCD29779FD3005893D3 /* Account.swift */; };
+		547A32B229861AC800B5DD69 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 547A32B129861AC800B5DD69 /* SwiftOTP */; };
+		547A32B329861AE100B5DD69 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
+		547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
+		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
 		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
 		54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AccountAddView.swift */; };
 		54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A229787B6F000E5D5E /* AccountRowView.swift */; };
@@ -38,14 +48,19 @@
 		5410B9E62975C25200E2839E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5410B9E82975C25200E2839E /* Kode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kode.entitlements; sourceTree = "<group>"; };
 		5410B9EA2975C25200E2839E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		54179DD829789F3400CBFC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		543E8E37297CAB7F00FF6E90 /* AccountEditRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditRowView.swift; sourceTree = "<group>"; };
 		543E8E39297CB08200FF6E90 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentView.swift; sourceTree = "<group>"; };
 		54522D962984EDEF00D46D0B /* SettingsViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewMac.swift; sourceTree = "<group>"; };
 		54671930298501CC0079F4D7 /* AccountRowViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowViewMac.swift; sourceTree = "<group>"; };
 		547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewMac.swift; sourceTree = "<group>"; };
+		547A329F298618F200B5DD69 /* KodeWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KodeWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		547A32A3298618F200B5DD69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		547A32A5298618F300B5DD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		547A32A8298618F300B5DD69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		54B86BD229862A78004879D7 /* KodeWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KodeWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		54BAE02C298623DB00904D9F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		54FF61992978721B000E5D5E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		54FF619D29787522000E5D5E /* AccountAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddView.swift; sourceTree = "<group>"; };
 		54FF61A229787B6F000E5D5E /* AccountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowView.swift; sourceTree = "<group>"; };
@@ -61,6 +76,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		547A329C298618F200B5DD69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547A32B229861AC800B5DD69 /* SwiftOTP in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -68,7 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				5410B9E12975C25100E2839E /* Kode */,
+				547A32A0298618F200B5DD69 /* KodeWatch Watch App */,
 				5410B9E02975C25100E2839E /* Products */,
+				547A32B029861AC800B5DD69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				5410B9DF2975C25100E2839E /* Kode.app */,
+				547A329F298618F200B5DD69 /* KodeWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,7 +109,6 @@
 		5410B9E12975C25100E2839E /* Kode */ = {
 			isa = PBXGroup;
 			children = (
-				54179DD829789F3400CBFC5E /* Info.plist */,
 				5410B9E22975C25100E2839E /* KodeApp.swift */,
 				5410B9E42975C25100E2839E /* ContentView.swift */,
 				540BDAF1297B0B7400080596 /* ContentViewMac.swift */,
@@ -114,6 +139,33 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		547A32A0298618F200B5DD69 /* KodeWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				54B86BD229862A78004879D7 /* KodeWatch Watch App.entitlements */,
+				547A32A3298618F200B5DD69 /* ContentView.swift */,
+				54BAE02C298623DB00904D9F /* AccountDetailView.swift */,
+				547A32A5298618F300B5DD69 /* Assets.xcassets */,
+				547A32A7298618F300B5DD69 /* Preview Content */,
+			);
+			path = "KodeWatch Watch App";
+			sourceTree = "<group>";
+		};
+		547A32A7298618F300B5DD69 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				547A32A8298618F300B5DD69 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		547A32B029861AC800B5DD69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +190,26 @@
 			productReference = 5410B9DF2975C25100E2839E /* Kode.app */;
 			productType = "com.apple.product-type.application";
 		};
+		547A329E298618F200B5DD69 /* KodeWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "KodeWatch Watch App" */;
+			buildPhases = (
+				547A329B298618F200B5DD69 /* Sources */,
+				547A329C298618F200B5DD69 /* Frameworks */,
+				547A329D298618F200B5DD69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KodeWatch Watch App";
+			packageProductDependencies = (
+				547A32B129861AC800B5DD69 /* SwiftOTP */,
+			);
+			productName = "KodeWatch Watch App";
+			productReference = 547A329F298618F200B5DD69 /* KodeWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,6 +221,9 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					5410B9DE2975C25100E2839E = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					547A329E298618F200B5DD69 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -171,6 +246,7 @@
 			projectRoot = "";
 			targets = (
 				5410B9DE2975C25100E2839E /* Kode */,
+				547A329E298618F200B5DD69 /* KodeWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -182,6 +258,16 @@
 			files = (
 				5410B9EB2975C25200E2839E /* Preview Assets.xcassets in Resources */,
 				5410B9E72975C25200E2839E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		547A329D298618F200B5DD69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547A32A9298618F300B5DD69 /* Preview Assets.xcassets in Resources */,
+				547A32AD298619EE00B5DD69 /* Assets.xcassets in Resources */,
+				547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +293,19 @@
 				547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */,
 				540A9DCE29779FD3005893D3 /* Account.swift in Sources */,
 				54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		547A329B298618F200B5DD69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547A32B329861AE100B5DD69 /* Utils.swift in Sources */,
+				547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */,
+				547A32AE29861A0900B5DD69 /* KodeApp.swift in Sources */,
+				54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */,
+				547A32AF29861A0C00B5DD69 /* Account.swift in Sources */,
+				547A32A4298618F200B5DD69 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +507,71 @@
 			};
 			name = Release;
 		};
+		547A32AB298618F300B5DD69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KodeWatch Watch App/KodeWatch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KodeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = LZZ6LYY2W8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "KodeWatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = KodeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boranseckin.Kode.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		547A32AC298618F300B5DD69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KodeWatch Watch App/KodeWatch Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KodeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = LZZ6LYY2W8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "KodeWatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = KodeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boranseckin.Kode.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -425,6 +589,15 @@
 			buildConfigurations = (
 				5410B9EF2975C25200E2839E /* Debug */,
 				5410B9F02975C25200E2839E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "KodeWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				547A32AB298618F300B5DD69 /* Debug */,
+				547A32AC298618F300B5DD69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -460,6 +633,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54179DD529789EB400CBFC5E /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		547A32B129861AC800B5DD69 /* SwiftOTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 540A9DD12977A68D005893D3 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
+			productName = SwiftOTP;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

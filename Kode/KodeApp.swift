@@ -13,7 +13,7 @@ struct KodeApp: App {
         let accountData = AccountData()
         
         WindowGroup {
-            #if os(iOS)
+            #if !os(macOS)
             ContentView().environmentObject(accountData)
             #else
             ContentViewMac().environmentObject(accountData)
