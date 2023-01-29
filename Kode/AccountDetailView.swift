@@ -58,7 +58,7 @@ struct AccountDetailView: View {
                         newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
                         newAccount.email = email.isEmpty ? account.email : email
                         newAccount.label = label.isEmpty ? nil : label
-                        let _ = accountData.modify(account: newAccount)
+                        accountData.modify(account: newAccount)
                         dismiss()
                     }
                 }

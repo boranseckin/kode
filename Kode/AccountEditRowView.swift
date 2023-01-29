@@ -42,7 +42,12 @@ struct AccountEditRowView: View {
                 Image(systemName: "pencil")
                     .font(.title2)
             }.sheet(isPresented: $isShowingDetailView, content: {
+                #if os(iOS)
                 AccountDetailView(account: account)
+                #else
+                AccountDetailViewMac(account: account)
+                    .frame(width: 400)
+                #endif
             })
             
             #if os(macOS)

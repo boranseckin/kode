@@ -129,10 +129,13 @@ func createAccountFromURIString(string: String) throws -> Account {
 // MARK: AccountData
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
-    var ids = [UUID]()
 
     init() {
         loadAll()
+
+        let timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
+            self.loadAll()
+        }
     }
 
     func add(account: Account) {

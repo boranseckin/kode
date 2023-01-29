@@ -21,6 +21,7 @@
 		54519FB4297AEC65009FA667 /* AcknowledgmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */; };
 		54522D972984EDEF00D46D0B /* SettingsViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54522D962984EDEF00D46D0B /* SettingsViewMac.swift */; };
 		54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671930298501CC0079F4D7 /* AccountRowViewMac.swift */; };
+		547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */; };
 		54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
 		54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AccountAddView.swift */; };
@@ -43,6 +44,7 @@
 		54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentView.swift; sourceTree = "<group>"; };
 		54522D962984EDEF00D46D0B /* SettingsViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewMac.swift; sourceTree = "<group>"; };
 		54671930298501CC0079F4D7 /* AccountRowViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowViewMac.swift; sourceTree = "<group>"; };
+		547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewMac.swift; sourceTree = "<group>"; };
 		54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		54FF61992978721B000E5D5E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		54FF619D29787522000E5D5E /* AccountAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddView.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				543E8E37297CAB7F00FF6E90 /* AccountEditRowView.swift */,
 				54FF619D29787522000E5D5E /* AccountAddView.swift */,
 				543E8E39297CB08200FF6E90 /* AccountDetailView.swift */,
+				547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */,
 				540A9DCD29779FD3005893D3 /* Account.swift */,
 				540A9DD42977B715005893D3 /* Utils.swift */,
 				54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */,
@@ -201,6 +204,7 @@
 				54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */,
 				54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */,
 				54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */,
+				547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */,
 				540A9DCE29779FD3005893D3 /* Account.swift in Sources */,
 				54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */,
 			);
