@@ -17,6 +17,7 @@ struct AccountDetailView: View {
     @State private var issuer = ""
     @State private var label = ""
     @State private var email = ""
+    @State private var showDeleteAlert = false
 
     var body: some View {
         NavigationView {
@@ -41,8 +42,25 @@ struct AccountDetailView: View {
                 }
                 
                 Section(header: Text("Label")) {
-                    TextField("Label (Optional)", text: $label)
+                    TextField("Label", text: $label)
                 }
+                
+                Button("Delete", role: .destructive) {
+                    showDeleteAlert.toggle()
+                }.alert(isPresented: $showDeleteAlert, content: {
+                    Alert(
+                        title: Text("Are you sure you want to delete this account?"),
+                        message: Text("This action is irreversable!"),
+                        primaryButton: .destructive(Text("Yes")) {
+                            accountData.remove(at: [accountData.accounts.firstIndex(where: { $0.id == account.id })!])
+                            showDeleteAlert = false
+                            dismiss()
+                        },
+                        secondaryButton: .cancel() {
+                            showDeleteAlert = false
+                        }
+                    )
+                })
             }
             .onAppear() {
                 secret = account.secret
