@@ -13,15 +13,35 @@ struct SettingsViewMac: View {
     @Environment(\.openWindow) var openWindow
     
     @AppStorage("iCloudSync") private var icloud = false
-
-    @State private var showFullVersion: Bool = false
     
-    var SettingsTab: some View {
-        Toggle("iCloud Sync", isOn: $icloud)
-            .onChange(of: icloud, perform: { value in
-                accountData.saveAll()
-                accountData.loadAll()
-            })
+    var AccountsTab: some View {
+        VStack {
+            List {
+                ForEach(accountData.accounts) { account in
+                    AccountEditRowView(account: account)
+                }
+                .onMove(perform: accountData.move)
+            }
+            .listStyle(.inset)
+            .frame(minHeight: 300)
+            
+            Text("Click and drag to reorder the list.")
+                .font(.caption)
+        }
+    }
+    
+    var SyncTab: some View {
+        VStack {
+            Toggle("iCloud Sync", isOn: $icloud)
+                .onChange(of: icloud, perform: { value in
+                    accountData.saveAll()
+                    accountData.loadAll()
+                })
+            
+            Text("Enabling this option will sync your current accounts with all your devices.")
+                .font(.caption)
+        }
+        .frame(height: 50)
     }
     
     var DebugTab: some View {
@@ -43,18 +63,8 @@ struct SettingsViewMac: View {
                 
                 Text("Kode App")
                     .font(.title3)
-                
-                HStack {
-                    if (showFullVersion) {
-                        Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
-                    } else {
-                        Text(Bundle.main.appVersionLong)
-                    }
-                }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    showFullVersion.toggle()
-                }
+
+                Text("\(Bundle.main.appVersionLong) (\(Bundle.main.appBuild))")
             }
 
             Button("Acknowledgments") {
@@ -78,9 +88,14 @@ struct SettingsViewMac: View {
 
     var body: some View {
         TabView {
-            SettingsTab
+            AccountsTab
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label("Accounts", systemImage: "person")
+                }
+            
+            SyncTab
+                .tabItem {
+                    Label("Sync", systemImage: "icloud")
                 }
             
             AboutTab

@@ -14,9 +14,15 @@ struct AccountEditRowView: View {
     var account: Account
     
     @State private var isShowingDetailView = false
+    @State private var showDeleteAlert = false
+    @State private var toBeDeleted: IndexSet?
 
     var body: some View {
         HStack {
+            #if os(macOS)
+            Image(systemName: "line.3.horizontal")
+            #endif
+            
             VStack(alignment: .leading) {
                 if (account.label != nil) {
                     Text("\(account.label!)")
@@ -38,11 +44,35 @@ struct AccountEditRowView: View {
             }.sheet(isPresented: $isShowingDetailView, content: {
                 AccountDetailView(account: account)
             })
+            
+            #if os(macOS)
+            Button {
+                showDeleteAlert.toggle()
+            } label: {
+                Image(systemName: "trash")
+            }.alert(isPresented: $showDeleteAlert, content: {
+                Alert(
+                    title: Text("Are you sure you want to delete this account?"),
+                    message: Text("This action is irreversable!"),
+                    primaryButton: .destructive(Text("Yes")) {
+                        accountData.remove(at: [accountData.accounts.firstIndex(where: { $0.id == account.id })!])
+                        toBeDeleted = nil
+                        showDeleteAlert = false
+                    },
+                    secondaryButton: .cancel() {
+                        toBeDeleted = nil
+                        showDeleteAlert = false
+                    }
+                )
+            })
+            #endif
         }
+        #if os(iOS)
         .contentShape(Rectangle())
         .onTapGesture {
             isShowingDetailView = true
         }
+        #endif
     }
 }
 
