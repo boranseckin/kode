@@ -7,15 +7,20 @@
 
 import SwiftUI
 
-struct Project {
+struct NamedURL {
     var name: String
     var url: URL
 }
 
 struct AcknowledgmentView: View {
     let projects = [
-        Project(name: "SwiftOTP", url: URL(string: "https://github.com/lachlanbell/SwiftOTP")!),
-        Project(name: "CodeScanner", url: URL(string: "https://github.com/twostraws/CodeScanner")!)
+        NamedURL(name: "SwiftOTP", url: URL(string: "https://github.com/lachlanbell/SwiftOTP")!),
+        NamedURL(name: "CodeScanner", url: URL(string: "https://github.com/twostraws/CodeScanner")!)
+    ]
+    
+    let guides = [
+        NamedURL(name: "Hacking With Swift", url: URL(string: "https://www.hackingwithswift.com")!),
+        NamedURL(name: "Kodeco", url: URL(string: "https://www.kodeco.com/books/watchos-with-swiftui-by-tutorials")!)
     ]
 
     var body: some View {
@@ -31,10 +36,12 @@ struct AcknowledgmentView: View {
             }
             
             Section(header: Text("Guides")) {
-                HStack {
-                    Link("Hacking With Swift", destination: URL(string: "https://www.hackingwithswift.com/")!)
-                    Spacer()
-                    Image(systemName: "link")
+                ForEach(guides, id: \.name) { guide in
+                    HStack {
+                        Link("\(guide.name)", destination: guide.url)
+                        Spacer()
+                        Image(systemName: "link")
+                    }
                 }
             }
         }
