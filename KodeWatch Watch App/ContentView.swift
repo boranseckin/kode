@@ -9,13 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var accountData: AccountData
+    @ObservedObject var connectivity = Connectivity.standard
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(accountData.accounts) { account in
-                    NavigationLink("\(account.issuer)") {
-                        AccountDetailView(account: account)
+            VStack {
+                if (connectivity.accounts.count == 0) {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                } else {
+                    List {
+                        ForEach(connectivity.accounts) { account in
+                            NavigationLink {
+                                AccountDetailView(account: account)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text(account.issuer)
+                                    Text(account.email)
+                                        .font(.footnote)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -25,9 +39,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static let accountData = AccountData()
-
     static var previews: some View {
-        ContentView().environmentObject(accountData)
+        ContentView()
     }
 }

@@ -129,13 +129,19 @@ func createAccountFromURIString(string: String) throws -> Account {
 // MARK: AccountData
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
+    
+    var timerCounter = 0
 
     init() {
+        #if !os(watchOS)
         loadAll()
+        syncToWatch()
 
         Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
             self.loadAll()
+            self.syncToWatch()
         }
+        #endif
     }
 
     func add(account: Account) {
@@ -165,13 +171,39 @@ class AccountData: ObservableObject {
     }
 
     func updateCode(account: Account) {
-        if let index = accounts.firstIndex(where: { $0.id == account.id }) {
-            if let data = base32DecodeToData(accounts[index].secret) {
+        #if !os(watchOS)
+        let array = accounts
+        #else
+        let array = Connectivity.standard.accounts
+        #endif
+
+        if let index = array.firstIndex(where: { $0.id == account.id }) {
+            if let data = base32DecodeToData(array[index].secret) {
                 if let totp = TOTP(secret: data) {
+                    #if !os(watchOS)
                     accounts[index].code = totp.generate(time: .now)!
+                    #else
+                    Connectivity.standard.accounts[index].code = totp.generate(time: .now)!
+                    #endif
+                } else {
+                    print("cc")
                 }
+            } else {
+                print("aa")
             }
+        } else {
+            print("BB")
         }
+    }
+    
+    func syncToWatch() {
+        var transfer = [[String: String]]()
+        accounts.forEach { account in
+            transfer.append(TransferrableAccount(account: account).toDict())
+        }
+
+        Connectivity.standard.send(accounts: transfer, delivery: .highPriority)
+        print("Synced")
     }
 
     // MARK: SAVE
@@ -233,8 +265,8 @@ class AccountData: ObservableObject {
                 let account = Bundle.main.decode(Account.self, from: fetchedAccount)
                 if !accounts.contains(where: { $0.id == account.id }) {
                     print("Loaded: \(account.id) - \(account.order)")
-                    updateCode(account: account)
                     accounts.append(account)
+                    updateCode(account: account)
                 }
             }
             accounts.sort(by: { $0.order < $1.order })

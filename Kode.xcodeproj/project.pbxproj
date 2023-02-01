@@ -33,10 +33,37 @@
 		547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
+		54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
+		54E205442988C20F00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
+		54E91E3E298979FC0021FC2C /* KodeWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 547A329F298618F200B5DD69 /* KodeWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
 		54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AccountAddView.swift */; };
 		54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A229787B6F000E5D5E /* AccountRowView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		54E91E3F298979FC0021FC2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5410B9D72975C25100E2839E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 547A329E298618F200B5DD69;
+			remoteInfo = "KodeWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		54E91E41298979FC0021FC2C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				54E91E3E298979FC0021FC2C /* KodeWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		540A9DCD29779FD3005893D3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -61,6 +88,7 @@
 		54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		54B86BD229862A78004879D7 /* KodeWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KodeWatch Watch App.entitlements"; sourceTree = "<group>"; };
 		54BAE02C298623DB00904D9F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
+		54E205422988C20C00A8E3B9 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		54FF61992978721B000E5D5E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		54FF619D29787522000E5D5E /* AccountAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddView.swift; sourceTree = "<group>"; };
 		54FF61A229787B6F000E5D5E /* AccountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowView.swift; sourceTree = "<group>"; };
@@ -124,6 +152,7 @@
 				540A9DCD29779FD3005893D3 /* Account.swift */,
 				540A9DD42977B715005893D3 /* Utils.swift */,
 				54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */,
+				54E205422988C20C00A8E3B9 /* Connectivity.swift */,
 				5410B9E62975C25200E2839E /* Assets.xcassets */,
 				5410B9E82975C25200E2839E /* Kode.entitlements */,
 				5410B9E92975C25200E2839E /* Preview Content */,
@@ -176,10 +205,12 @@
 				5410B9DB2975C25100E2839E /* Sources */,
 				5410B9DC2975C25100E2839E /* Frameworks */,
 				5410B9DD2975C25100E2839E /* Resources */,
+				54E91E41298979FC0021FC2C /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				54E91E40298979FC0021FC2C /* PBXTargetDependency */,
 			);
 			name = Kode;
 			packageProductDependencies = (
@@ -290,6 +321,7 @@
 				54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */,
 				54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */,
 				54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */,
+				54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */,
 				547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */,
 				540A9DCE29779FD3005893D3 /* Account.swift in Sources */,
 				54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */,
@@ -306,10 +338,20 @@
 				54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */,
 				547A32AF29861A0C00B5DD69 /* Account.swift in Sources */,
 				547A32A4298618F200B5DD69 /* ContentView.swift in Sources */,
+				54E205442988C20F00A8E3B9 /* Connectivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		54E91E40298979FC0021FC2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 547A329E298618F200B5DD69 /* KodeWatch Watch App */;
+			targetProxy = 54E91E3F298979FC0021FC2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5410B9EC2975C25200E2839E /* Debug */ = {
