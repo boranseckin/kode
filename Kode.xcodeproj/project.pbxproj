@@ -35,7 +35,7 @@
 		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
 		54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
 		54E205442988C20F00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
-		54E91E3E298979FC0021FC2C /* KodeWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 547A329F298618F200B5DD69 /* KodeWatch Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		54E91E3E298979FC0021FC2C /* Kode Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 547A329F298618F200B5DD69 /* Kode Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
 		54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AccountAddView.swift */; };
 		54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A229787B6F000E5D5E /* AccountRowView.swift */; };
@@ -47,7 +47,7 @@
 			containerPortal = 5410B9D72975C25100E2839E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 547A329E298618F200B5DD69;
-			remoteInfo = "KodeWatch Watch App";
+			remoteInfo = "Kode Watch App";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,7 +58,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				54E91E3E298979FC0021FC2C /* KodeWatch Watch App.app in Embed Watch Content */,
+				54E91E3E298979FC0021FC2C /* Kode Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,12 +81,12 @@
 		54522D962984EDEF00D46D0B /* SettingsViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewMac.swift; sourceTree = "<group>"; };
 		54671930298501CC0079F4D7 /* AccountRowViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowViewMac.swift; sourceTree = "<group>"; };
 		547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewMac.swift; sourceTree = "<group>"; };
-		547A329F298618F200B5DD69 /* KodeWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KodeWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		547A329F298618F200B5DD69 /* Kode Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kode Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		547A32A3298618F200B5DD69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		547A32A5298618F300B5DD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		547A32A8298618F300B5DD69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
-		54B86BD229862A78004879D7 /* KodeWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KodeWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		54B86BD229862A78004879D7 /* Kode Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Kode Watch App.entitlements"; sourceTree = "<group>"; };
 		54BAE02C298623DB00904D9F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		54E205422988C20C00A8E3B9 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		54FF61992978721B000E5D5E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				5410B9E12975C25100E2839E /* Kode */,
-				547A32A0298618F200B5DD69 /* KodeWatch Watch App */,
+				547A32A0298618F200B5DD69 /* Kode Watch App */,
 				5410B9E02975C25100E2839E /* Products */,
 				547A32B029861AC800B5DD69 /* Frameworks */,
 			);
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				5410B9DF2975C25100E2839E /* Kode.app */,
-				547A329F298618F200B5DD69 /* KodeWatch Watch App.app */,
+				547A329F298618F200B5DD69 /* Kode Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,16 +168,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		547A32A0298618F200B5DD69 /* KodeWatch Watch App */ = {
+		547A32A0298618F200B5DD69 /* Kode Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				54B86BD229862A78004879D7 /* KodeWatch Watch App.entitlements */,
+				54B86BD229862A78004879D7 /* Kode Watch App.entitlements */,
 				547A32A3298618F200B5DD69 /* ContentView.swift */,
 				54BAE02C298623DB00904D9F /* AccountDetailView.swift */,
 				547A32A5298618F300B5DD69 /* Assets.xcassets */,
 				547A32A7298618F300B5DD69 /* Preview Content */,
 			);
-			path = "KodeWatch Watch App";
+			path = "Kode Watch App";
 			sourceTree = "<group>";
 		};
 		547A32A7298618F300B5DD69 /* Preview Content */ = {
@@ -221,9 +221,9 @@
 			productReference = 5410B9DF2975C25100E2839E /* Kode.app */;
 			productType = "com.apple.product-type.application";
 		};
-		547A329E298618F200B5DD69 /* KodeWatch Watch App */ = {
+		547A329E298618F200B5DD69 /* Kode Watch App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "KodeWatch Watch App" */;
+			buildConfigurationList = 547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "Kode Watch App" */;
 			buildPhases = (
 				547A329B298618F200B5DD69 /* Sources */,
 				547A329C298618F200B5DD69 /* Frameworks */,
@@ -233,12 +233,12 @@
 			);
 			dependencies = (
 			);
-			name = "KodeWatch Watch App";
+			name = "Kode Watch App";
 			packageProductDependencies = (
 				547A32B129861AC800B5DD69 /* SwiftOTP */,
 			);
-			productName = "KodeWatch Watch App";
-			productReference = 547A329F298618F200B5DD69 /* KodeWatch Watch App.app */;
+			productName = "Kode Watch App";
+			productReference = 547A329F298618F200B5DD69 /* Kode Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -277,7 +277,7 @@
 			projectRoot = "";
 			targets = (
 				5410B9DE2975C25100E2839E /* Kode */,
-				547A329E298618F200B5DD69 /* KodeWatch Watch App */,
+				547A329E298618F200B5DD69 /* Kode Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -348,7 +348,7 @@
 		54E91E40298979FC0021FC2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 547A329E298618F200B5DD69 /* KodeWatch Watch App */;
+			target = 547A329E298618F200B5DD69 /* Kode Watch App */;
 			targetProxy = 54E91E3F298979FC0021FC2C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -554,15 +554,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "KodeWatch Watch App/KodeWatch Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Kode Watch App/Kode Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"KodeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Kode Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = LZZ6LYY2W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KodeWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = KodeWatch;
+				INFOPLIST_FILE = "Kode Watch App/Kode-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -586,15 +586,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "KodeWatch Watch App/KodeWatch Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Kode Watch App/Kode Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"KodeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Kode Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = LZZ6LYY2W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KodeWatch-Watch-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = KodeWatch;
+				INFOPLIST_FILE = "Kode Watch App/Kode-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -635,7 +635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "KodeWatch Watch App" */ = {
+		547A32AA298618F300B5DD69 /* Build configuration list for PBXNativeTarget "Kode Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				547A32AB298618F300B5DD69 /* Debug */,

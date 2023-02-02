@@ -1,6 +1,6 @@
 //
 //  AccountDetailView.swift
-//  KodeWatch Watch App
+//  Kode Watch App
 //
 //  Created by Boran Seckin on 2023-01-28.
 //
