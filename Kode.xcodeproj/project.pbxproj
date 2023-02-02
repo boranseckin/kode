@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		54E91E3F298979FC0021FC2C /* PBXContainerItemProxy */ = {
+		54C5026F298B3F04002CEAD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5410B9D72975C25100E2839E /* Project object */;
 			proxyType = 1;
@@ -210,7 +210,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				54E91E40298979FC0021FC2C /* PBXTargetDependency */,
+				54C50270298B3F04002CEAD5 /* PBXTargetDependency */,
 			);
 			name = Kode;
 			packageProductDependencies = (
@@ -345,11 +345,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		54E91E40298979FC0021FC2C /* PBXTargetDependency */ = {
+		54C50270298B3F04002CEAD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 547A329E298618F200B5DD69 /* Kode Watch App */;
-			targetProxy = 54E91E3F298979FC0021FC2C /* PBXContainerItemProxy */;
+			targetProxy = 54C5026F298B3F04002CEAD5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

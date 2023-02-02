@@ -135,11 +135,15 @@ class AccountData: ObservableObject {
     init() {
         #if !os(watchOS)
         loadAll()
+        #if !os(macOS)
         syncToWatch()
+        #endif
 
         Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
             self.loadAll()
+            #if !os(macOS)
             self.syncToWatch()
+            #endif
         }
         #endif
     }
@@ -186,16 +190,18 @@ class AccountData: ObservableObject {
                     Connectivity.standard.accounts[index].code = totp.generate(time: .now)!
                     #endif
                 } else {
-                    print("cc")
+                    print("UpdateCode: TOTP can not be created")
                 }
             } else {
-                print("aa")
+                print("UpdateCode: Secret decode not successfull")
             }
         } else {
-            print("BB")
+            print("UpdateCode: Account not found")
+            print(account)
         }
     }
     
+    #if os(iOS)
     func syncToWatch() {
         var transfer = [[String: String]]()
         accounts.forEach { account in
@@ -205,6 +211,7 @@ class AccountData: ObservableObject {
         Connectivity.standard.send(accounts: transfer, delivery: .highPriority)
         print("Synced")
     }
+    #endif
 
     // MARK: SAVE
     func save(id: UUID) {

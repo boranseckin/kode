@@ -5,6 +5,7 @@
 //  Created by Boran Seckin on 2023-01-30.
 //
 
+#if os(iOS) || os(watchOS)
 import Foundation
 import WatchConnectivity
 
@@ -167,3 +168,4 @@ extension Connectivity: WCSessionDelegate {
     }
     #endif
 }
+#endif
