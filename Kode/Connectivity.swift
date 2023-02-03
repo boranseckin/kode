@@ -7,6 +7,7 @@
 
 #if os(iOS) || os(watchOS)
 import Foundation
+import SwiftUI
 import WatchConnectivity
 
 enum Delivery {
@@ -68,6 +69,9 @@ struct TransferrableAccount {
 // MARK: - Connectivity
 final class Connectivity: NSObject, ObservableObject {
     @Published var accounts = [Account]()
+    @Published var enabled = false
+
+    @AppStorage("WatchSync") private var watch = true
 
     static let standard = Connectivity()
 
@@ -77,6 +81,9 @@ final class Connectivity: NSObject, ObservableObject {
         #if !os(watchOS)
         guard WCSession.isSupported() else { return }
         #else
+        enabled = UserDefaults.standard.bool(forKey: "watch-enabled")
+        print("Enabled: \(enabled)")
+            
         if let data = UserDefaults.standard.data(forKey: "watch-accounts") {
             print("Fetched local data")
             accounts = Bundle.main.decode([Account].self, from: data)
@@ -85,6 +92,14 @@ final class Connectivity: NSObject, ObservableObject {
 
         WCSession.default.delegate = self
         WCSession.default.activate()
+    }
+    
+    public func isAvailable() -> Bool {
+        #if os(iOS)
+        return WCSession.default.activationState == .activated
+        #else
+        return false
+        #endif
     }
 
     public func send(accounts: [[String: String]], delivery: Delivery) {
@@ -105,7 +120,10 @@ final class Connectivity: NSObject, ObservableObject {
 
         case .highPriority:
             do {
-                try WCSession.default.updateApplicationContext(["accounts": accounts])
+                try WCSession.default.updateApplicationContext([
+                    "accounts": accounts,
+                    "enabled": watch
+                ])
             } catch {
                 print(error)
             }
@@ -142,6 +160,15 @@ extension Connectivity: WCSessionDelegate {
 
     #if os(watchOS)
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        if let enabled = applicationContext["enabled"] {
+            print("Sync Enabled: \(enabled)")
+            DispatchQueue.main.async {
+                Connectivity.standard.enabled = enabled as! Bool
+
+                UserDefaults.standard.set(enabled as! Bool, forKey: "watch-enabled")
+            }
+        }
+
         if let transfer = applicationContext["accounts"] {
             print("Recieved")
             DispatchQueue.main.async {

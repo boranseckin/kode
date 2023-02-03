@@ -33,7 +33,7 @@ struct AccountDetailView: View {
                 Text("\(account.email)")
                     .lineLimit(1)
                     .font(.footnote)
-                    .frame(width: 135)
+                    .frame(maxWidth: 120)
             }
             .onAppear() {
                 accountData.updateCode(account: account)

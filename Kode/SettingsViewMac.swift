@@ -38,8 +38,9 @@ struct SettingsViewMac: View {
                     accountData.loadAll()
                 })
             
-            Text("Enabling this option will sync your current accounts with all your devices.")
+            Text("Enabling this option will sync your accounts\nacross all sync enabled devices.")
                 .font(.caption)
+                .multilineTextAlignment(.center)
         }
         .frame(height: 50)
     }

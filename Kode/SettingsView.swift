@@ -5,12 +5,14 @@
 //  Created by Boran Seckin on 2023-01-18.
 //
 
+#if !os(macOS)
 import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var accountData: AccountData
     
     @AppStorage("iCloudSync") private var icloud = false
+    @AppStorage("WatchSync") private var watch = true
 
     @State private var checkStatus: Bool?
     @State private var showFullVersion: Bool = false
@@ -18,11 +20,24 @@ struct SettingsView: View {
     var body: some View {
         List {
             Section {
-                Toggle("iCloud Sync", isOn: $icloud)
+                Toggle("Sync to iCloud", isOn: $icloud)
                     .onChange(of: icloud, perform: { value in
                         accountData.saveAll()
                         accountData.loadAll()
                     })
+            } footer: {
+                Text("Enabling this option will sync your accounts across all sync enabled devices.")
+            }
+            
+            if (Connectivity.standard.isAvailable()) {
+                Section {
+                    Toggle("Sync to Apple Watch", isOn: $watch)
+                        .onChange(of: watch, perform: { value in
+                            accountData.syncToWatch()
+                        })
+                } footer: {
+                    Text("Enabling this option will allow you to access your accounts on your watch, even when it is not connected to your phone.")
+                }
             }
 
             #if DEBUG
@@ -98,3 +113,4 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView().environmentObject(accountData)
     }
 }
+#endif

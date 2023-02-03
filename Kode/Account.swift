@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import SwiftOTP
 
 enum Types: Codable {
@@ -130,6 +131,8 @@ func createAccountFromURIString(string: String) throws -> Account {
 class AccountData: ObservableObject {
     @Published var accounts = [Account]()
     
+    @AppStorage("WatchSync") private var watch = true
+    
     var timerCounter = 0
 
     init() {
@@ -139,7 +142,7 @@ class AccountData: ObservableObject {
         syncToWatch()
         #endif
 
-        Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
+        Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
             self.loadAll()
             #if !os(macOS)
             self.syncToWatch()
@@ -204,8 +207,10 @@ class AccountData: ObservableObject {
     #if os(iOS)
     func syncToWatch() {
         var transfer = [[String: String]]()
-        accounts.forEach { account in
-            transfer.append(TransferrableAccount(account: account).toDict())
+        if (watch) {
+            accounts.forEach { account in
+                transfer.append(TransferrableAccount(account: account).toDict())
+            }
         }
 
         Connectivity.standard.send(accounts: transfer, delivery: .highPriority)

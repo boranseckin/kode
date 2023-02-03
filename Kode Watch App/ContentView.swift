@@ -14,19 +14,31 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                if (connectivity.accounts.count == 0) {
-                    ProgressView()
-                        .progressViewStyle(.circular)
+                if (!connectivity.enabled) {
+                    Image(systemName: "exclamationmark.arrow.triangle.2.circlepath")
+                        .font(.largeTitle)
+
+                    Text("Sync is not enabled")
+                        .padding(.bottom)
+
+                    Text("Enable Apple Watch sync on your iPhone app settings.")
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
                 } else {
-                    List {
-                        ForEach(connectivity.accounts) { account in
-                            NavigationLink {
-                                AccountDetailView(account: account)
-                            } label: {
-                                VStack(alignment: .leading) {
-                                    Text(account.issuer)
-                                    Text(account.email)
-                                        .font(.footnote)
+                    if (connectivity.accounts.count == 0) {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    } else {
+                        List {
+                            ForEach(connectivity.accounts) { account in
+                                NavigationLink {
+                                    AccountDetailView(account: account)
+                                } label: {
+                                    VStack(alignment: .leading) {
+                                        Text(account.issuer)
+                                        Text(account.email)
+                                            .font(.footnote)
+                                    }
                                 }
                             }
                         }
