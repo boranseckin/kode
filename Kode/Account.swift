@@ -142,7 +142,7 @@ class AccountData: ObservableObject {
         syncToWatch()
         #endif
 
-        Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
+        Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
             self.loadAll()
             #if !os(macOS)
             self.syncToWatch()
