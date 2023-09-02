@@ -22,7 +22,7 @@ final class KeychainHelper {
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecValueData: value
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
 
         let status = SecItemAdd(query, nil)
         
@@ -33,7 +33,7 @@ final class KeychainHelper {
                 kSecAttrSynchronizable: icloud,
                 kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
                 kSecAttrAccount: account.uuidString.data(using: .utf8)!,
-            ] as CFDictionary
+            ] as [CFString : Any] as CFDictionary
             let updateData = [kSecValueData: value] as CFDictionary
             
             let updateStatus = SecItemUpdate(updateQuery, updateData)
@@ -57,7 +57,7 @@ final class KeychainHelper {
             kSecAttrSynchronizable: icloud,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!,
             kSecReturnData: true
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
         
         var result: AnyObject?
         let status = SecItemCopyMatching(query, &result)
@@ -78,7 +78,7 @@ final class KeychainHelper {
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!,
             kSecMatchLimit: kSecMatchLimitAll,
             kSecReturnData: true
-        ] as CFDictionary
+        ] as [CFString : Any] as [CFString : Any] as CFDictionary
 
         var result: AnyObject?
         let status = SecItemCopyMatching(query, &result)
@@ -101,7 +101,7 @@ final class KeychainHelper {
             kSecUseDataProtectionKeychain: true,
             kSecAttrSynchronizable: icloud,
             kSecAttrAccount: account.uuidString.data(using: .utf8)!
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
         
         let status = SecItemDelete(query)
         guard status == errSecSuccess else {
@@ -116,7 +116,7 @@ final class KeychainHelper {
             kSecUseDataProtectionKeychain: true,
             kSecAttrSynchronizable: icloud,
             kSecAttrLabel: "KodeAccount".data(using: .utf8)!
-        ] as CFDictionary
+        ] as [CFString : Any] as CFDictionary
         
         let status = SecItemDelete(query)
         

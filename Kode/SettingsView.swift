@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var accountData: AccountData
-    
+
     @AppStorage("iCloudSync") private var icloud = false
     @AppStorage("WatchSync") private var watch = true
 
@@ -25,6 +25,8 @@ struct SettingsView: View {
                         accountData.saveAll()
                         accountData.loadAll()
                     })
+            } header: {
+                Text("Sync")
             } footer: {
                 Text("Enabling this option will sync your accounts across all sync enabled devices.")
             }
@@ -40,32 +42,6 @@ struct SettingsView: View {
                 }
             }
 
-            #if DEBUG
-            Section(header: Text("Debug")) {
-                Button("Save", action: accountData.saveAll)
-
-                Button("Load", action: accountData.loadAll)
-
-                Button("Delete", action: accountData.deleteAll)
-
-                HStack {
-                    Button("Check", action: {
-                        checkStatus = Data.checkFM(atPath: "account_ids")
-                    })
-
-                    Spacer()
-
-                    if (checkStatus != nil && checkStatus!) {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(Color.green)
-                    } else if (checkStatus != nil && !checkStatus!) {
-                        Image(systemName: "x.circle")
-                            .foregroundColor(Color.red)
-                    }
-                }
-            }
-            #endif
-            
             Section(header: Text("Info")) {
                 HStack {
                     Text("Version")
@@ -99,6 +75,32 @@ struct SettingsView: View {
                     Spacer()
                 }
             }
+            
+            #if DEBUG
+            Section(header: Text("Debug")) {
+                Button("Save", action: accountData.saveAll)
+
+                Button("Load", action: accountData.loadAll)
+
+                Button("Delete", action: accountData.deleteAll)
+
+                HStack {
+                    Button("Check", action: {
+                        checkStatus = Data.checkFM(atPath: "account_ids")
+                    })
+
+                    Spacer()
+
+                    if (checkStatus != nil && checkStatus!) {
+                        Image(systemName: "checkmark.circle")
+                            .foregroundColor(Color.green)
+                    } else if (checkStatus != nil && !checkStatus!) {
+                        Image(systemName: "x.circle")
+                            .foregroundColor(Color.red)
+                    }
+                }
+            }
+            #endif
         }
         #if os(iOS)
         .listStyle(.insetGrouped)
