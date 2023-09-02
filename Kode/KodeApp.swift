@@ -17,7 +17,7 @@ struct KodeApp: App {
             ContentView().environmentObject(accountData)
             #else
             ContentViewMac().environmentObject(accountData)
-                .frame(width: 300)
+                .frame(minWidth: 300, maxWidth: 300, minHeight: 100)
             #endif
         }
         #if os(macOS)
