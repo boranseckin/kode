@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentViewMac: View {
     @EnvironmentObject var accountData: AccountData
+    
+    @AppStorage("alwaysOnTop") private var alwaysOnTop = true
 
     @State private var progress = 30.0
     @State private var showAdd = false
@@ -31,6 +33,7 @@ struct ContentViewMac: View {
                     }
                     .onAppear() {
                         accountData.updateCode(account: account)
+                        updateWindowLevel(level: alwaysOnTop ? .floating : .normal)
                     }
             }
         }

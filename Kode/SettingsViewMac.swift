@@ -7,12 +7,19 @@
 
 import SwiftUI
 
+public func updateWindowLevel(level: NSWindow.Level) {
+    for window in NSApplication.shared.windows {
+        window.level = level
+    }
+}
+
 struct SettingsViewMac: View {
     @EnvironmentObject var accountData: AccountData
     
     @Environment(\.openWindow) var openWindow
     
     @AppStorage("iCloudSync") private var icloud = false
+    @AppStorage("alwaysOnTop") private var alwaysOnTop = false
     
     var AccountsTab: some View {
         VStack {
@@ -45,13 +52,12 @@ struct SettingsViewMac: View {
         .frame(height: 50)
     }
     
-    var DebugTab: some View {
+    var SettingsTab: some View {
         VStack {
-            Button("Save", action: accountData.saveAll)
-            
-            Button("Load", action: accountData.loadAll)
-            
-            Button("Delete", action: accountData.deleteAll)
+            Toggle("Always on Top", isOn: $alwaysOnTop)
+                .onChange(of: alwaysOnTop, perform: { value in
+                    updateWindowLevel(level: value ? .floating : .normal)
+                })
         }
     }
     
@@ -100,17 +106,15 @@ struct SettingsViewMac: View {
                     Label("Sync", systemImage: "icloud")
                 }
             
+            SettingsTab
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
+            
             AboutTab
                 .tabItem {
                     Label("About", systemImage: "info")
                 }
-            
-            #if DEBUG
-            DebugTab
-                .tabItem {
-                    Label("Debug", systemImage: "wrench.and.screwdriver")
-                }
-            #endif
         }
         .padding()
     }
