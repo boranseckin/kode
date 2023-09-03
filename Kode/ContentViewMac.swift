@@ -33,7 +33,9 @@ struct ContentViewMac: View {
                     }
                     .onAppear() {
                         accountData.updateCode(account: account)
+                        #if os(macOS)
                         updateWindowLevel(level: alwaysOnTop ? .floating : .normal)
+                        #endif
                     }
             }
         }

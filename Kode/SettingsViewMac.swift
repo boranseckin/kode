@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+#if os(macOS)
 public func updateWindowLevel(level: NSWindow.Level) {
     for window in NSApplication.shared.windows {
         window.level = level
     }
 }
+#endif
 
 struct SettingsViewMac: View {
     @EnvironmentObject var accountData: AccountData
@@ -56,7 +58,9 @@ struct SettingsViewMac: View {
         VStack {
             Toggle("Always on Top", isOn: $alwaysOnTop)
                 .onChange(of: alwaysOnTop, perform: { value in
+                    #if os(macOS)
                     updateWindowLevel(level: value ? .floating : .normal)
+                    #endif
                 })
         }
     }
