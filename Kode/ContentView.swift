@@ -20,74 +20,81 @@ struct ContentView: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(accountData.accounts) { account in
-                    if (editMode == .active) {
-                        AccountEditRowView(account: account)
-                    } else {
-                        AccountRowView(account: account, progress: progress)
-                            .moveDisabled(true)
-                            .deleteDisabled(true)
-                            .onReceive(timer) { time in
-                                progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
-                                
-                                let seconds = Calendar.current.component(.second, from: time)
-                                if (seconds == 0 || seconds == 30) {
+        NavigationStack {
+            VStack {
+                ProgressView(value: progress, total: 30)
+                    .padding(.init(top: 1, leading: 15, bottom: 0, trailing: 15))
+                    .scaleEffect(x: 1, y: 2, anchor: .center)
+                    .onReceive(timer) { time in
+                        progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
+                    }
+
+                List {
+                    ForEach(accountData.accounts) { account in
+                        if (editMode == .active) {
+                            AccountEditRowView(account: account)
+                        } else {
+                            AccountRowView(account: account, progress: progress)
+                                .moveDisabled(true)
+                                .deleteDisabled(true)
+                                .onReceive(timer) { time in
+                                    let seconds = Calendar.current.component(.second, from: time)
+                                    if (seconds == 0 || seconds == 30) {
+                                        accountData.updateCode(account: account)
+                                    }
+                                }
+                                .onAppear() {
                                     accountData.updateCode(account: account)
                                 }
-                            }
-                            .onAppear() {
-                                accountData.updateCode(account: account)
-                            }
-                    }
-                }
-                .onMove(perform: accountData.move)
-                .onDelete(perform: { index in
-                    toBeDeleted = index
-                    showDeleteAlert.toggle()
-                })
-                .alert(isPresented: $showDeleteAlert, content: {
-                    Alert(
-                        title: Text("Are you sure you want to delete this account?"),
-                        message: Text("This action is irreversable!"),
-                        primaryButton: .destructive(Text("Yes")) {
-                            accountData.remove(at: toBeDeleted!)
-                            toBeDeleted = nil
-                            showDeleteAlert = false
-                        },
-                        secondaryButton: .cancel() {
-                            toBeDeleted = nil
-                            showDeleteAlert = false
                         }
-                    )
-                })
-            }
-            .listStyle(.insetGrouped)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        showAdd.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.title2)
-                    }.sheet(isPresented: $showAdd, content: {
-                        AccountAddView()
+                    }
+                    .onMove(perform: accountData.move)
+                    .onDelete(perform: { index in
+                        toBeDeleted = index
+                        showDeleteAlert.toggle()
                     })
-
-                    NavigationLink(destination: SettingsView().navigationTitle("Settings")) {
-                        Image(systemName: "gear")
+                    .alert(isPresented: $showDeleteAlert, content: {
+                        Alert(
+                            title: Text("Are you sure you want to delete this account?"),
+                            message: Text("This action is irreversable!"),
+                            primaryButton: .destructive(Text("Yes")) {
+                                accountData.remove(at: toBeDeleted!)
+                                toBeDeleted = nil
+                                showDeleteAlert = false
+                            },
+                            secondaryButton: .cancel() {
+                                toBeDeleted = nil
+                                showDeleteAlert = false
+                            }
+                        )
+                    })
+                }
+                .listSectionSpacing(0)
+                .listStyle(.insetGrouped)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                    }
+                    
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button {
+                            showAdd.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }.sheet(isPresented: $showAdd, content: {
+                            AccountAddView()
+                        })
+                        
+                        NavigationLink(destination: SettingsView().navigationTitle("Settings")) {
+                            Image(systemName: "gear")
+                        }
                     }
                 }
+                .environment(\.editMode, $editMode)
+                .navigationTitle("Kode")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .environment(\.editMode, $editMode)
-            .navigationTitle("Kode")
         }
-        .navigationViewStyle(.stack)
     }
 }
 

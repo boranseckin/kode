@@ -22,8 +22,8 @@ struct AccountRowView: View {
                 ? Text("\(account.label!) • \(account.issuer)")
                 : Text("\(account.issuer)")
         ) {
-            VStack(alignment: .leading) {
-                HStack {
+            HStack {
+                VStack(alignment: .leading) {
                     Text("\(account.code)")
                         .font(.title)
                         .bold()
@@ -31,19 +31,17 @@ struct AccountRowView: View {
                         .textSelection(.enabled)
                         #endif
                     
-                    Spacer()
                     
-                    if (tap) {
-                        Text("Copied")
-                    }
-                    Image(systemName: tap ? "checkmark" : "clipboard")
+                    Text("\(account.email)")
+                        .lineLimit(1)
+                        .font(.subheadline)
                 }
-                
-                Text("\(account.email)")
-                    .lineLimit(1)
-                    .font(.subheadline)
+                Spacer()
 
-                ProgressView(value: progress, total: 30)
+                if (tap) {
+                    Text("Copied")
+                }
+                Image(systemName: tap ? "checkmark" : "clipboard")
             }
             .contentShape(Rectangle())
             .onTapGesture {
