@@ -50,7 +50,6 @@ struct AccountDetailView: View {
                     }
                 }
         }
-        .padding(.top)
     }
 }
 
@@ -65,11 +64,11 @@ struct AccountDetailView_Previews: PreviewProvider {
 
 struct CustomCircularProgressViewStyle: ProgressViewStyle {
     func makeBody(configuration: Configuration) -> some View {
-        ZStack {
             Circle()
                 .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
                 .stroke(Color.blue, style: StrokeStyle(lineWidth: 3))
                 .rotationEffect(.degrees(-90))
-        }
+                .scaledToFit()
+                .frame(width: 170, height: 170)
     }
 }

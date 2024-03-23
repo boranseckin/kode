@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  ContentViewWatch.swift
 //  Kode Watch App
 //
 //  Created by Boran Seckin on 2023-01-28.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentViewWatch: View {
     @EnvironmentObject var accountData: AccountData
     @ObservedObject var connectivity = Connectivity.standard
 
@@ -50,8 +50,10 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewWatch_Previews: PreviewProvider {
+    static let accountData = AccountData()
+
     static var previews: some View {
-        ContentView()
+        ContentViewWatch().environmentObject(accountData)
     }
 }

@@ -12,7 +12,6 @@
 		540A9DD52977B716005893D3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
 		540BDAF2297B0B7400080596 /* ContentViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540BDAF1297B0B7400080596 /* ContentViewMac.swift */; };
 		5410B9E32975C25100E2839E /* KodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E22975C25100E2839E /* KodeApp.swift */; };
-		5410B9E52975C25100E2839E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E42975C25100E2839E /* ContentView.swift */; };
 		5410B9E72975C25200E2839E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
 		5410B9EB2975C25200E2839E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9EA2975C25200E2839E /* Preview Assets.xcassets */; };
 		54179DD729789EB400CBFC5E /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 54179DD629789EB400CBFC5E /* CodeScanner */; };
@@ -21,16 +20,17 @@
 		54519FB4297AEC65009FA667 /* AcknowledgmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */; };
 		54522D972984EDEF00D46D0B /* SettingsViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54522D962984EDEF00D46D0B /* SettingsViewMac.swift */; };
 		54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671930298501CC0079F4D7 /* AccountRowViewMac.swift */; };
+		54694C4D2BAF7FF400855991 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54694C4C2BAF7FF400855991 /* ContentView.swift */; };
 		547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */; };
-		547A32A4298618F200B5DD69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A32A3298618F200B5DD69 /* ContentView.swift */; };
+		547A32A4298618F200B5DD69 /* ContentViewWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A32A3298618F200B5DD69 /* ContentViewWatch.swift */; };
 		547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A5298618F300B5DD69 /* Assets.xcassets */; };
 		547A32A9298618F300B5DD69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A8298618F300B5DD69 /* Preview Assets.xcassets */; };
 		547A32AD298619EE00B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
-		547A32AE29861A0900B5DD69 /* KodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5410B9E22975C25100E2839E /* KodeApp.swift */; };
 		547A32AF29861A0C00B5DD69 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DCD29779FD3005893D3 /* Account.swift */; };
 		547A32B229861AC800B5DD69 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 547A32B129861AC800B5DD69 /* SwiftOTP */; };
 		547A32B329861AE100B5DD69 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
 		547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
+		549AD32B2BAF7BD100952C1A /* KodeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549AD32A2BAF7BD100952C1A /* KodeWatchApp.swift */; };
 		54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
 		54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
@@ -71,7 +71,6 @@
 		540BDAF1297B0B7400080596 /* ContentViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewMac.swift; sourceTree = "<group>"; };
 		5410B9DF2975C25100E2839E /* Kode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5410B9E22975C25100E2839E /* KodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodeApp.swift; sourceTree = "<group>"; };
-		5410B9E42975C25100E2839E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5410B9E62975C25200E2839E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5410B9E82975C25200E2839E /* Kode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kode.entitlements; sourceTree = "<group>"; };
 		5410B9EA2975C25200E2839E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -80,11 +79,13 @@
 		54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentView.swift; sourceTree = "<group>"; };
 		54522D962984EDEF00D46D0B /* SettingsViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewMac.swift; sourceTree = "<group>"; };
 		54671930298501CC0079F4D7 /* AccountRowViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowViewMac.swift; sourceTree = "<group>"; };
+		54694C4C2BAF7FF400855991 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewMac.swift; sourceTree = "<group>"; };
 		547A329F298618F200B5DD69 /* Kode Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kode Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		547A32A3298618F200B5DD69 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		547A32A3298618F200B5DD69 /* ContentViewWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewWatch.swift; sourceTree = "<group>"; };
 		547A32A5298618F300B5DD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		547A32A8298618F300B5DD69 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		549AD32A2BAF7BD100952C1A /* KodeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodeWatchApp.swift; sourceTree = "<group>"; };
 		54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		54B86BD229862A78004879D7 /* Kode Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Kode Watch App.entitlements"; sourceTree = "<group>"; };
 		54BAE02C298623DB00904D9F /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
@@ -138,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				5410B9E22975C25100E2839E /* KodeApp.swift */,
-				5410B9E42975C25100E2839E /* ContentView.swift */,
+				54694C4C2BAF7FF400855991 /* ContentView.swift */,
 				540BDAF1297B0B7400080596 /* ContentViewMac.swift */,
 				54FF61992978721B000E5D5E /* SettingsView.swift */,
 				54522D962984EDEF00D46D0B /* SettingsViewMac.swift */,
@@ -171,7 +172,8 @@
 		547A32A0298618F200B5DD69 /* Kode Watch App */ = {
 			isa = PBXGroup;
 			children = (
-				547A32A3298618F200B5DD69 /* ContentView.swift */,
+				549AD32A2BAF7BD100952C1A /* KodeWatchApp.swift */,
+				547A32A3298618F200B5DD69 /* ContentViewWatch.swift */,
 				54BAE02C298623DB00904D9F /* AccountDetailView.swift */,
 				547A32A5298618F300B5DD69 /* Assets.xcassets */,
 				54B86BD229862A78004879D7 /* Kode Watch App.entitlements */,
@@ -311,10 +313,10 @@
 			files = (
 				540BDAF2297B0B7400080596 /* ContentViewMac.swift in Sources */,
 				540A9DD52977B716005893D3 /* Utils.swift in Sources */,
+				54694C4D2BAF7FF400855991 /* ContentView.swift in Sources */,
 				54519FB4297AEC65009FA667 /* AcknowledgmentView.swift in Sources */,
 				54522D972984EDEF00D46D0B /* SettingsViewMac.swift in Sources */,
 				543E8E38297CAB7F00FF6E90 /* AccountEditRowView.swift in Sources */,
-				5410B9E52975C25100E2839E /* ContentView.swift in Sources */,
 				543E8E3A297CB08200FF6E90 /* AccountDetailView.swift in Sources */,
 				5410B9E32975C25100E2839E /* KodeApp.swift in Sources */,
 				54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */,
@@ -332,12 +334,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				549AD32B2BAF7BD100952C1A /* KodeWatchApp.swift in Sources */,
 				547A32B329861AE100B5DD69 /* Utils.swift in Sources */,
 				547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */,
-				547A32AE29861A0900B5DD69 /* KodeApp.swift in Sources */,
 				54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */,
 				547A32AF29861A0C00B5DD69 /* Account.swift in Sources */,
-				547A32A4298618F200B5DD69 /* ContentView.swift in Sources */,
+				547A32A4298618F200B5DD69 /* ContentViewWatch.swift in Sources */,
 				54E205442988C20F00A8E3B9 /* Connectivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +575,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,7 +588,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -605,6 +608,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kode;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.boranseckin.Kode;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -618,7 +622,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
