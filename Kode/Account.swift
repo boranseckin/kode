@@ -27,7 +27,7 @@ enum Digits: Codable {
 
 // MARK: Account
 struct Account: Codable, Identifiable {
-    var id: UUID
+    var id: UUID = UUID()
     var type: Types = .TOTP
     var secret: String
     var issuer: String
@@ -41,7 +41,6 @@ struct Account: Codable, Identifiable {
 
     #if DEBUG
     static let example = Account(
-        id: UUID(),
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
         issuer: "Company A",
         email: "boran@boranseckin.com",
@@ -49,7 +48,6 @@ struct Account: Codable, Identifiable {
     )
 
     static let example2 = Account(
-        id: UUID(),
         secret: "KUOEHG7ANDUFL4NAOIDN3BBV6LEVLT2N",
         issuer: "Company B",
         email: "boran@boranseckin.com"
