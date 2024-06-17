@@ -75,32 +75,6 @@ struct SettingsView: View {
                     Spacer()
                 }
             }
-            
-            #if DEBUG
-            Section(header: Text("Debug")) {
-                Button("Save", action: accountData.saveAll)
-
-                Button("Load", action: accountData.loadAll)
-
-                Button("Delete", action: accountData.deleteAll)
-
-                HStack {
-                    Button("Check", action: {
-                        checkStatus = Data.checkFM(atPath: "account_ids")
-                    })
-
-                    Spacer()
-
-                    if (checkStatus != nil && checkStatus!) {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(Color.green)
-                    } else if (checkStatus != nil && !checkStatus!) {
-                        Image(systemName: "x.circle")
-                            .foregroundColor(Color.red)
-                    }
-                }
-            }
-            #endif
         }
         #if os(iOS)
         .listStyle(.insetGrouped)
