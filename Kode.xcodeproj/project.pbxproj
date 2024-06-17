@@ -25,12 +25,12 @@
 		547A32A4298618F200B5DD69 /* ContentViewWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A32A3298618F200B5DD69 /* ContentViewWatch.swift */; };
 		547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A5298618F300B5DD69 /* Assets.xcassets */; };
 		547A32A9298618F300B5DD69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A8298618F300B5DD69 /* Preview Assets.xcassets */; };
-		547A32AD298619EE00B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
 		547A32AF29861A0C00B5DD69 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DCD29779FD3005893D3 /* Account.swift */; };
 		547A32B229861AC800B5DD69 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 547A32B129861AC800B5DD69 /* SwiftOTP */; };
 		547A32B329861AE100B5DD69 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A9DD42977B715005893D3 /* Utils.swift */; };
 		547A32B429861AFF00B5DD69 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		549AD32B2BAF7BD100952C1A /* KodeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549AD32A2BAF7BD100952C1A /* KodeWatchApp.swift */; };
+		549E1F7B2C1FCE0100A9D4FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5410B9E62975C25200E2839E /* Assets.xcassets */; };
 		54AB7D55297F6DD200B22D96 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AB7D54297F6DD100B22D96 /* KeychainHelper.swift */; };
 		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
 		54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
@@ -299,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				547A32A9298618F300B5DD69 /* Preview Assets.xcassets in Resources */,
-				547A32AD298619EE00B5DD69 /* Assets.xcassets in Resources */,
+				549E1F7B2C1FCE0100A9D4FD /* Assets.xcassets in Resources */,
 				547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
