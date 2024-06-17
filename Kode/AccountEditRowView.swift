@@ -39,8 +39,10 @@ struct AccountEditRowView: View {
             Button {
                 isShowingDetailView.toggle()
             } label: {
-                Image(systemName: "pencil")
+                Image(systemName: "slider.horizontal.3")
+                    #if !os(macOS)
                     .font(.title2)
+                    #endif
             }.sheet(isPresented: $isShowingDetailView, content: {
                 #if os(iOS)
                 AccountDetailView(account: account)
