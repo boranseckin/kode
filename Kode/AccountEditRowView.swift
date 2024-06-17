@@ -28,7 +28,7 @@ struct AccountEditRowView: View {
                     Text("\(account.label!)")
                 }
                 
-                Text("\(account.issuer)")
+                Text("\(account.issuer == "" ? "Unknown" : account.issuer)")
                 
                 Text("\(account.email)")
                     .font(.subheadline)

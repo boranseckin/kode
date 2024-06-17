@@ -17,10 +17,12 @@ struct AccountRowView: View {
     var progress: Double
 
     var body: some View {
+        let issuer = account.issuer == "" ? "Unknown" : account.issuer
+
         Section(
             header: account.label != nil
-                ? Text("\(account.label!) • \(account.issuer)")
-                : Text("\(account.issuer)")
+                ? Text("\(account.label!) • \(issuer)")
+                : Text("\(issuer)")
         ) {
             HStack {
                 VStack(alignment: .leading) {
