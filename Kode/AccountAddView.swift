@@ -23,6 +23,7 @@ struct AccountAddView: View {
     @State private var permission = true
     
     @State private var showScanErrorAlert = false
+    @State private var showCreateAlert = false
 
     var body: some View {
         VStack {
@@ -110,10 +111,16 @@ struct AccountAddView: View {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
+                        showCreateAlert = true
                     }
                 })
                 .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
                 .keyboardShortcut(.defaultAction)
+                .alert("Cannot create account", isPresented: $showCreateAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("Please verify the secret and try again.")
+                }
                 #endif
             }
         }
