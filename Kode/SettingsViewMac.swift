@@ -51,7 +51,6 @@ struct SettingsViewMac: View {
                 .font(.caption)
                 .multilineTextAlignment(.center)
         }
-        .frame(height: 50)
     }
     
     var SettingsTab: some View {
@@ -62,6 +61,10 @@ struct SettingsViewMac: View {
                     updateWindowLevel(level: newValue ? .floating : .normal)
                     #endif
                 })
+
+            Text("Enabling this option will make sure Kode always stays on top of every other app.")
+                .font(.caption)
+                .multilineTextAlignment(.center)
         }
     }
     
@@ -120,6 +123,7 @@ struct SettingsViewMac: View {
                     Label("About", systemImage: "info")
                 }
         }
+        .frame(minWidth: 300, minHeight: 300)
         .padding()
     }
 }

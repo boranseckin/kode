@@ -28,7 +28,6 @@ struct KodeApp: App {
         Settings {
             NavigationStack {
                 SettingsViewMac()
-                    .frame(width: 300)
                     .environmentObject(accountData)
             }
         }
