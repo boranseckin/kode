@@ -21,7 +21,7 @@ struct SettingsView: View {
         List {
             Section {
                 Toggle("Sync to iCloud", isOn: $icloud)
-                    .onChange(of: icloud, perform: { value in
+                    .onChange(of: icloud, {
                         accountData.saveAll()
                         accountData.loadAll()
                     })
@@ -34,7 +34,7 @@ struct SettingsView: View {
             if (Connectivity.standard.isAvailable()) {
                 Section {
                     Toggle("Sync to Apple Watch", isOn: $watch)
-                        .onChange(of: watch, perform: { value in
+                        .onChange(of: watch, {
                             accountData.syncToWatch()
                         })
                 } footer: {

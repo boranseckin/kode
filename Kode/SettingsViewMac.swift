@@ -42,7 +42,7 @@ struct SettingsViewMac: View {
     var SyncTab: some View {
         VStack {
             Toggle("iCloud Sync", isOn: $icloud)
-                .onChange(of: icloud, perform: { value in
+                .onChange(of: icloud, {
                     accountData.saveAll()
                     accountData.loadAll()
                 })
@@ -57,9 +57,9 @@ struct SettingsViewMac: View {
     var SettingsTab: some View {
         VStack {
             Toggle("Always on Top", isOn: $alwaysOnTop)
-                .onChange(of: alwaysOnTop, perform: { value in
+                .onChange(of: alwaysOnTop, { oldValue, newValue in
                     #if os(macOS)
-                    updateWindowLevel(level: value ? .floating : .normal)
+                    updateWindowLevel(level: newValue ? .floating : .normal)
                     #endif
                 })
         }

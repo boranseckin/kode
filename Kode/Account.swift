@@ -39,7 +39,7 @@ struct Account: Codable, Identifiable {
     var code: String = "000000"
     var order: Int = 999
 
-//    #if DEBUG
+    #if DEBUG
     static let example = Account(
         id: UUID(),
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
@@ -54,7 +54,7 @@ struct Account: Codable, Identifiable {
         issuer: "Company B",
         email: "boran@boranseckin.com"
     )
-//    #endif
+    #endif
 }
 
 // MARK: Create Functions

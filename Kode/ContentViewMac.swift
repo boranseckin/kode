@@ -5,6 +5,7 @@
 //  Created by Boran Seckin on 2023-01-20.
 //
 
+#if os(macOS)
 import SwiftUI
 
 struct ContentViewMac: View {
@@ -62,4 +63,4 @@ struct ContentViewMac_Previews: PreviewProvider {
         ContentViewMac().environmentObject(accountData)
     }
 }
-
+#endif
