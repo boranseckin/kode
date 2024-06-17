@@ -24,7 +24,7 @@ struct AccountDetailViewMac: View {
             Section(header: Text("Secret Key")) {
                 Text(secret)
                     .lineLimit(1)
-                    .colorMultiply(.gray)
+                    .foregroundColor(.gray)
                     .textSelection(.enabled)
             }
             

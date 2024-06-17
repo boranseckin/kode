@@ -20,31 +20,31 @@ struct AccountDetailView: View {
     @State private var showDeleteAlert = false
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Secret Key")) {
-                    Text(secret)
-                        .lineLimit(1)
-                        .colorMultiply(.gray)
-                        .textSelection(.enabled)
-                }
-                
-                Section(header: Text("Issuer")) {
-                    TextField("Issuer", text: $issuer)
-                }
-                
-                Section(header: Text("Email")) {
-                    TextField("Email", text: $email)
-                        #if os(iOS)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
-                        #endif
-                }
-                
-                Section(header: Text("Label")) {
-                    TextField("Label", text: $label)
-                }
-                
+        Form {
+            Section(header: Text("Secret Key").font(.caption).foregroundStyle(.gray)) {
+                Text(secret)
+                    .lineLimit(1)
+                    .foregroundColor(.gray)
+                    .textSelection(.enabled)
+            }
+            
+            Section(header: Text("Issuer").font(.caption).foregroundStyle(.gray)) {
+                TextField("Issuer", text: $issuer)
+            }
+            
+            Section(header: Text("Email").font(.caption).foregroundStyle(.gray)) {
+                TextField("Email", text: $email)
+                    #if os(iOS)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                    #endif
+            }
+            
+            Section(header: Text("Label").font(.caption).foregroundStyle(.gray)) {
+                TextField("Label", text: $label)
+            }
+
+            Section(header: Text("").font(.caption).foregroundStyle(.gray)) {
                 Button("Delete", role: .destructive) {
                     showDeleteAlert.toggle()
                 }.alert(isPresented: $showDeleteAlert, content: {
@@ -62,27 +62,27 @@ struct AccountDetailView: View {
                     )
                 })
             }
-            .onAppear() {
-                secret = account.secret
-                issuer = account.issuer
-                email = account.email
-                label = account.label ?? ""
-            }
-            .toolbar {
-                #if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        var newAccount = account
-                        newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
-                        newAccount.email = email.isEmpty ? account.email : email
-                        newAccount.label = label.isEmpty ? nil : label
-                        accountData.modify(account: newAccount)
-                        dismiss()
-                    }
+        }
+        .onAppear() {
+            secret = account.secret
+            issuer = account.issuer
+            email = account.email
+            label = account.label ?? ""
+        }
+        #if os(iOS)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Done") {
+                    var newAccount = account
+                    newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
+                    newAccount.email = email.isEmpty ? account.email : email
+                    newAccount.label = label.isEmpty ? nil : label
+                    accountData.modify(account: newAccount)
+                    dismiss()
                 }
-                #endif
             }
         }
+        #endif
     }
 }
 
