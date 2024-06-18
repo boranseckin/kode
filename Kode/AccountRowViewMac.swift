@@ -27,7 +27,7 @@ struct AccountRowViewMac: View {
             }
 
             HStack {
-                Text("\(account.code)")
+                Text(account.formattedCode())
                     .font(.title)
                     .bold()
                     .textSelection(.enabled)

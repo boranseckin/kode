@@ -188,6 +188,7 @@ class AccountData: ObservableObject {
         if let index = accounts.firstIndex(where: { $0.id == account.id }) {
             accounts[index] = account
             save(id: account.id)
+            updateCode(account: account)
         }
     }
 
