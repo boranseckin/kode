@@ -9,20 +9,31 @@ import Foundation
 import SwiftUI
 import SwiftOTP
 
-enum Types: Codable {
+enum Types: Codable, CaseIterable, Identifiable {
     case TOTP
     case HOTP
+    var id: Self { self }
 }
 
-enum Algorithms: Codable {
+enum Algorithms: Codable, CaseIterable, Identifiable {
     case SHA1
     case SHA256
     case SHA512
+    var id: Self { self }
+    
+    func toOTP() -> OTPAlgorithm {
+        switch self {
+        case .SHA1: return OTPAlgorithm.sha1
+        case .SHA256: return OTPAlgorithm.sha256
+        case .SHA512: return OTPAlgorithm.sha512
+        }
+    }
 }
 
-enum Digits: Codable {
-    case SIX
-    case EIGHT
+enum Digits: Int, Codable, CaseIterable, Identifiable {
+    case SIX = 6
+    case EIGHT = 8
+    var id: Self { self }
 }
 
 // MARK: Account
@@ -53,6 +64,12 @@ struct Account: Codable, Identifiable {
         user: "boran@boranseckin.com"
     )
     #endif
+    
+    func formattedCode() -> String {
+        var code = self.code
+        code.insert(" ", at: code.index(code.endIndex, offsetBy: -(self.digits == .SIX ? 3 : 4)))
+        return code
+    }
 }
 
 // MARK: Create Functions
@@ -75,7 +92,6 @@ func createAccount(
     }
     
     return Account(
-        id: UUID(),
         type: type,
         secret: secret,
         issuer: issuer,
@@ -122,7 +138,7 @@ func createAccountFromURIString(string: String) throws -> Account {
         }
     }
 
-    return Account(id: UUID(), secret: secret, issuer: issuer, user: user)
+    return Account(secret: secret, issuer: issuer, user: user)
 }
 
 // MARK: AccountData
@@ -183,15 +199,19 @@ class AccountData: ObservableObject {
         #endif
 
         if let index = array.firstIndex(where: { $0.id == account.id }) {
-            if let data = base32DecodeToData(array[index].secret) {
-                if let totp = TOTP(secret: data) {
-                    #if !os(watchOS)
-                    accounts[index].code = totp.generate(time: .now)!
-                    #else
-                    Connectivity.standard.accounts[index].code = totp.generate(time: .now)!
-                    #endif
+            if let secret = base32DecodeToData(array[index].secret) {
+                if array[index].type == .TOTP {
+                    if let totp = TOTP(secret: secret, digits: array[index].digits.rawValue, algorithm: array[index].algorithm.toOTP()) {
+                        #if !os(watchOS)
+                        accounts[index].code = totp.generate(time: .now)!
+                        #else
+                        Connectivity.standard.accounts[index].code = totp.generate(time: .now)!
+                        #endif
+                    } else {
+                        print("UpdateCode: TOTP can not be created")
+                    }
                 } else {
-                    print("UpdateCode: TOTP can not be created")
+                    print("UpdateCode: Not TOTP")
                 }
             } else {
                 print("UpdateCode: Secret decode not successfull")

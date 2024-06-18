@@ -26,7 +26,7 @@ struct AccountRowView: View {
         ) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("\(account.code)")
+                    Text(account.formattedCode())
                         .font(.title)
                         .bold()
                         #if os(macOS)

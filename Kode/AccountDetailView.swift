@@ -17,6 +17,9 @@ struct AccountDetailView: View {
     @State private var issuer = ""
     @State private var label = ""
     @State private var user = ""
+    @State private var type = Types.TOTP
+    @State private var algorithm = Algorithms.SHA1
+    @State private var digits = Digits.SIX
     @State private var showDeleteAlert = false
 
     var body: some View {
@@ -43,6 +46,26 @@ struct AccountDetailView: View {
             Section(header: Text("Label").font(.caption).foregroundStyle(.gray)) {
                 TextField("Label", text: $label)
             }
+            
+            Section(header: Text("Advanced").font(.caption).foregroundStyle(.gray)) {
+//                Picker("Type", selection: $type) {
+//                    ForEach(Types.allCases) { type in
+//                        Text(String(describing: type))
+//                    }
+//                }
+
+                Picker("Algorithm", selection: $algorithm) {
+                    ForEach(Algorithms.allCases) { algorithm in
+                        Text(String(describing: algorithm))
+                    }
+                }
+
+                Picker("Digits", selection: $digits) {
+                    ForEach(Digits.allCases) { digits in
+                        Text(String(describing: digits))
+                    }
+                }
+            }
 
             Section(header: Text("").font(.caption).foregroundStyle(.gray)) {
                 Button("Delete", role: .destructive) {
@@ -68,6 +91,9 @@ struct AccountDetailView: View {
             issuer = account.issuer
             user = account.user
             label = account.label ?? ""
+            type = account.type
+            algorithm = account.algorithm
+            digits = account.digits
         }
         #if os(iOS)
         .toolbar {
@@ -77,6 +103,9 @@ struct AccountDetailView: View {
                     newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
                     newAccount.user = user.isEmpty ? account.user : user
                     newAccount.label = label.isEmpty ? nil : label
+                    newAccount.type = type
+                    newAccount.algorithm = algorithm
+                    newAccount.digits = digits
                     accountData.modify(account: newAccount)
                     dismiss()
                 }
