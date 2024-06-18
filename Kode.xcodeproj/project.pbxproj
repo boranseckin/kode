@@ -35,7 +35,7 @@
 		54BAE02D298623DB00904D9F /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAE02C298623DB00904D9F /* AccountDetailView.swift */; };
 		54E205432988C20C00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
 		54E205442988C20F00A8E3B9 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E205422988C20C00A8E3B9 /* Connectivity.swift */; };
-		54E91E3E298979FC0021FC2C /* Kode Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 547A329F298618F200B5DD69 /* Kode Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		54E91E3E298979FC0021FC2C /* Kode Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 547A329F298618F200B5DD69 /* Kode Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		54FF619A2978721B000E5D5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61992978721B000E5D5E /* SettingsView.swift */; };
 		54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF619D29787522000E5D5E /* AccountAddView.swift */; };
 		54FF61A329787B6F000E5D5E /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FF61A229787B6F000E5D5E /* AccountRowView.swift */; };
@@ -349,7 +349,6 @@
 /* Begin PBXTargetDependency section */
 		54C50270298B3F04002CEAD5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 547A329E298618F200B5DD69 /* Kode Watch App */;
 			targetProxy = 54C5026F298B3F04002CEAD5 /* PBXContainerItemProxy */;
 		};
@@ -509,6 +508,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -553,6 +554,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
