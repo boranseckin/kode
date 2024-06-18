@@ -28,15 +28,15 @@ struct TransferrableAccount {
     var id: UUID
     var secret: String
     var issuer: String
-    var email: String
+    var user: String
     var label: String?
     var code: String
 
-    init(id: String, secret: String, issuer: String, email: String, label: String?, code: String) {
+    init(id: String, secret: String, issuer: String, user: String, label: String?, code: String) {
         self.id = UUID(uuidString: id)!
         self.secret = secret
         self.issuer = issuer
-        self.email = email
+        self.user = user
         self.label = label
         self.code = code
     }
@@ -45,7 +45,7 @@ struct TransferrableAccount {
         self.id = account.id
         self.secret = account.secret
         self.issuer = account.issuer
-        self.email = account.email
+        self.user = account.user
         self.label = account.label
         self.code = account.code
     }
@@ -55,14 +55,14 @@ struct TransferrableAccount {
         dict["id"] = id.uuidString
         dict["secret"] = secret
         dict["issuer"] = issuer
-        dict["email"] = email
+        dict["user"] = user
         dict["label"] = label ?? nil
         dict["code"] = code
         return dict
     }
 
     func toAccount() -> Account {
-        return Account(id: id, secret: secret, issuer: issuer, email: email, label: label, code: code)
+        return Account(id: id, secret: secret, issuer: issuer, user: user, label: label, code: code)
     }
 }
 
@@ -180,7 +180,7 @@ extension Connectivity: WCSessionDelegate {
                             id: account["id"]!,
                             secret: account["secret"]!,
                             issuer: account["issuer"]!,
-                            email: account["email"]!,
+                            user: account["user"]!,
                             label: account["label"] ?? nil,
                             code: account["code"]!
                         ).toAccount()

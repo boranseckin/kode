@@ -40,7 +40,7 @@ struct AccountRowViewMac: View {
                 Image(systemName: tap ? "checkmark" : "clipboard")
             }
             
-            Text("\(account.email)")
+            Text("\(account.user)")
                 .lineLimit(1)
                 .font(.subheadline)
 

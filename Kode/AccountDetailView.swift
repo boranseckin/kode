@@ -16,7 +16,7 @@ struct AccountDetailView: View {
     @State private var secret = ""
     @State private var issuer = ""
     @State private var label = ""
-    @State private var email = ""
+    @State private var user = ""
     @State private var showDeleteAlert = false
 
     var body: some View {
@@ -32,8 +32,8 @@ struct AccountDetailView: View {
                 TextField("Issuer", text: $issuer)
             }
             
-            Section(header: Text("Email").font(.caption).foregroundStyle(.gray)) {
-                TextField("Email", text: $email)
+            Section(header: Text("User").font(.caption).foregroundStyle(.gray)) {
+                TextField("User", text: $user)
                     #if os(iOS)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
@@ -66,7 +66,7 @@ struct AccountDetailView: View {
         .onAppear() {
             secret = account.secret
             issuer = account.issuer
-            email = account.email
+            user = account.user
             label = account.label ?? ""
         }
         #if os(iOS)
@@ -75,7 +75,7 @@ struct AccountDetailView: View {
                 Button("Done") {
                     var newAccount = account
                     newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
-                    newAccount.email = email.isEmpty ? account.email : email
+                    newAccount.user = user.isEmpty ? account.user : user
                     newAccount.label = label.isEmpty ? nil : label
                     accountData.modify(account: newAccount)
                     dismiss()

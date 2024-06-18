@@ -36,8 +36,9 @@ struct ContentViewWatch: View {
                                 } label: {
                                     VStack(alignment: .leading) {
                                         Text(account.issuer)
-                                        Text(account.email)
+                                        Text(account.user)
                                             .font(.footnote)
+                                            .lineLimit(1)
                                     }
                                 }
                             }

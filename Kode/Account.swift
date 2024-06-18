@@ -34,7 +34,7 @@ struct Account: Codable, Identifiable {
     var algorithm: Algorithms = .SHA1
     var digits: Digits = .SIX
     var counter: Int?
-    var email: String
+    var user: String
     var label: String?
     var code: String = "000000"
     var order: Int = 999
@@ -43,14 +43,14 @@ struct Account: Codable, Identifiable {
     static let example = Account(
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
         issuer: "Company A",
-        email: "boran@boranseckin.com",
+        user: "boran@boranseckin.com",
         label: "Test Account"
     )
 
     static let example2 = Account(
         secret: "KUOEHG7ANDUFL4NAOIDN3BBV6LEVLT2N",
         issuer: "Company B",
-        email: "boran@boranseckin.com"
+        user: "boran@boranseckin.com"
     )
     #endif
 }
@@ -63,7 +63,7 @@ func createAccount(
     algorithm: Algorithms = .SHA1,
     digits: Digits = .SIX,
     counter: Int? = nil,
-    email: String,
+    user: String,
     label: String?
 ) throws -> Account {
     guard let _ = base32DecodeToData(secret) else {
@@ -82,7 +82,7 @@ func createAccount(
         algorithm: algorithm,
         digits: digits,
         counter: counter,
-        email: email,
+        user: user,
         label: (label != nil && !label!.isEmpty) ? label : nil
     )
 }
@@ -96,15 +96,15 @@ func createAccountFromURIString(string: String) throws -> Account {
         throw "Not a URI"
     }
     
-    var secret = "", issuer = "", email = ""
+    var secret = "", issuer = "", user = ""
 
     let main = substring(str: uri.path(percentEncoded: false), start: 1)
     if (main.contains(":")) {
         let components = main.components(separatedBy: ":")
         issuer = components[0]
-        email = components[1]
+        user = components[1]
     } else {
-        email = main
+        user = main
     }
 
     let queryComponents = URLComponents(string: string)!.queryItems!
@@ -122,7 +122,7 @@ func createAccountFromURIString(string: String) throws -> Account {
         }
     }
 
-    return Account(id: UUID(), secret: secret, issuer: issuer, email: email)
+    return Account(id: UUID(), secret: secret, issuer: issuer, user: user)
 }
 
 // MARK: AccountData

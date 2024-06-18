@@ -16,7 +16,7 @@ struct AccountDetailViewMac: View {
     @State private var secret = ""
     @State private var issuer = ""
     @State private var label = ""
-    @State private var email = ""
+    @State private var user = ""
 
     var body: some View {
         #if os(macOS)
@@ -30,7 +30,7 @@ struct AccountDetailViewMac: View {
             
             TextField("Issuer", text: $issuer)
             
-            TextField("Email", text: $email)
+            TextField("User", text: $user)
             
             TextField("Label", text: $label)
             
@@ -45,12 +45,12 @@ struct AccountDetailViewMac: View {
                 Button("Save") {
                     var newAccount = account
                     newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
-                    newAccount.email = email.isEmpty ? account.email : email
+                    newAccount.user = user.isEmpty ? account.user : user
                     newAccount.label = label.isEmpty ? nil : label
                     accountData.modify(account: newAccount)
                     dismiss()
                 }
-                .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                .disabled(secret.isEmpty || issuer.isEmpty || user.isEmpty)
                 .keyboardShortcut(.defaultAction)
             }
         }
@@ -58,7 +58,7 @@ struct AccountDetailViewMac: View {
         .onAppear() {
             secret = account.secret
             issuer = account.issuer
-            email = account.email
+            user = account.user
             label = account.label ?? ""
         }
         #endif

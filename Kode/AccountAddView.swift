@@ -18,7 +18,7 @@ struct AccountAddView: View {
     @State private var secret = ""
     @State private var issuer = ""
     @State private var label = ""
-    @State private var email = ""
+    @State private var user = ""
     
     @State private var permission = true
     
@@ -81,7 +81,7 @@ struct AccountAddView: View {
 
                     TextField("Issuer", text: $issuer)
 
-                    TextField("Email", text: $email)
+                    TextField("User", text: $user)
                     #if os(iOS)
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
@@ -96,25 +96,25 @@ struct AccountAddView: View {
                     Spacer()
 
                     Button("Save", action: {
-                        if (handleSubmit(secret: secret, issuer: issuer, email: email, label: label)) {
+                        if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label)) {
                             dismiss()
                         } else {
                             print("Manually adding new account failed.")
                         }
                     })
-                    .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                    .disabled(secret.isEmpty || issuer.isEmpty || user.isEmpty)
                     .keyboardShortcut(.defaultAction)
                 }
                 #else
                 Button("Save", action: {
-                    if (handleSubmit(secret: secret, issuer: issuer, email: email, label: label)) {
+                    if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label)) {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
                         showCreateAlert = true
                     }
                 })
-                .disabled(secret.isEmpty || issuer.isEmpty || email.isEmpty)
+                .disabled(secret.isEmpty || issuer.isEmpty || user.isEmpty)
                 .keyboardShortcut(.defaultAction)
                 .alert("Cannot create account", isPresented: $showCreateAlert) {
                     Button("OK", role: .cancel) { }
@@ -130,9 +130,9 @@ struct AccountAddView: View {
     }
     
     // MARK: Handlers
-    func handleSubmit(secret: String, issuer: String, email: String, label: String) -> Bool {
+    func handleSubmit(secret: String, issuer: String, user: String, label: String) -> Bool {
         do {
-            let account = try createAccount(secret: secret, issuer: issuer, email: email, label: label)
+            let account = try createAccount(secret: secret, issuer: issuer, user: user, label: label)
             accountData.add(account: account)
             return true
         } catch {

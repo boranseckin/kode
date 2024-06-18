@@ -34,7 +34,7 @@ struct AccountRowView: View {
                         #endif
                     
                     
-                    Text("\(account.email)")
+                    Text("\(account.user)")
                         .lineLimit(1)
                         .font(.subheadline)
                 }

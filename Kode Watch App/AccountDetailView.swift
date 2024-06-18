@@ -30,7 +30,7 @@ struct AccountDetailView: View {
                     .lineLimit(1)
                     .frame(width: 150)
 
-                Text("\(account.email)")
+                Text("\(account.user)")
                     .lineLimit(1)
                     .font(.footnote)
                     .frame(maxWidth: 120)
