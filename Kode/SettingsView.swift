@@ -7,15 +7,17 @@
 
 #if !os(macOS)
 import SwiftUI
+import LocalAuthentication
 
 struct SettingsView: View {
     @EnvironmentObject var accountData: AccountData
 
     @AppStorage("iCloudSync") private var icloud = false
     @AppStorage("WatchSync") private var watch = true
+    @AppStorage("BioAuth") private var bio = false
 
-    @State private var checkStatus: Bool?
     @State private var showFullVersion: Bool = false
+    @State private var isAuthAvailable: Bool = false
 
     var body: some View {
         List {
@@ -41,6 +43,19 @@ struct SettingsView: View {
                     Text("Enabling this option will allow you to access your accounts on your watch, even when it is not connected to your phone.")
                 }
             }
+            
+            Section {
+                Toggle("Enable \(getAuthName())", isOn: $bio)
+            } header: {
+                Text("Security")
+            } footer: {
+                if isAuthAvailable {
+                    Text("Enabling this option will require device owner authentication upon launching the app.")
+                } else {
+                    Text("Device owner authentication is not available on this device.")
+                }
+            }
+            .disabled(!isAuthAvailable)
 
             Section(header: Text("Info")) {
                 HStack {
@@ -79,6 +94,26 @@ struct SettingsView: View {
         #if os(iOS)
         .listStyle(.insetGrouped)
         #endif
+        .onAppear {
+            isAuthAvailable = isAuthenticatable()
+        }
+    }
+    
+    func getAuthName() -> String {
+        let context = LAContext()
+        switch context.biometryType {
+            case .faceID: return "Face ID"
+            case .touchID: return "Touch ID"
+            case .opticID: return "Optic ID"
+            case .none: return "Passcode"
+            @unknown default: return "Authentication"
+        }
+    }
+
+    func isAuthenticatable() -> Bool {
+        let context = LAContext()
+        var error: NSError?
+        return context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
     }
 }
 
