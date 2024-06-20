@@ -206,7 +206,6 @@ extension Connectivity: WCSessionDelegate {
                 Connectivity.standard.accounts = []
 
                 for account in transfer as! [[String: String]] {
-                    print(account)
                     Connectivity.standard.accounts.append(
                         TransferrableAccount(dict: account).toAccount()
                     )

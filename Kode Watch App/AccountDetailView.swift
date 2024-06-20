@@ -11,6 +11,7 @@ struct AccountDetailView: View {
     @EnvironmentObject var accountData: AccountData
 
     @State private var progress = 30.0
+    @State private var synced = false
 
     var account: Account
 
@@ -20,14 +21,23 @@ struct AccountDetailView: View {
         ZStack(alignment: .center) {
             ProgressView(value: progress, total: 30)
                 .progressViewStyle(CustomCircularProgressViewStyle())
+                .onAppear {
+                    synced = false
+                }
                 .onReceive(timer) { time in
-                    progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
-                    
-                    let seconds = Calendar.current.component(.second, from: time)
-                    if (seconds == 0 || seconds == 30) {
-                        accountData.updateCode(account: account)
+                    if !synced {
+                        progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
+                        synced = true
+                    } else {
+                        if progress - 0.1 <= 0.1 {
+                            progress = 30.0
+                            accountData.updateCode(account: account)
+                        } else {
+                            progress -= 0.1
+                        }
                     }
                 }
+                .padding()
 
             GeometryReader { geo in
                 HStack(alignment: .center) {
@@ -36,7 +46,7 @@ struct AccountDetailView: View {
                         Spacer()
                         VStack {
                             if (account.label != nil) {
-                                Text("\(account.label!)")
+                                Text(account.label!)
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.1)
                             }
@@ -58,7 +68,7 @@ struct AccountDetailView: View {
                         .onAppear {
                             accountData.updateCode(account: account)
                         }
-                        .frame(width: geo.size.width * 0.8, height: geo.size.height * 0.8)
+                        .frame(width: geo.size.width * 0.74, height: geo.size.height * 0.74)
                         Spacer()
                     }
                     Spacer()
