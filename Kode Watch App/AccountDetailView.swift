@@ -17,25 +17,30 @@ struct AccountDetailView: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             VStack {
                 if (account.label != nil) {
                     Text("\(account.label!)")
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
                 }
                 
-                Text("\(account.code)")
-                    .font(.largeTitle)
+                Text(account.formattedCode())
+                    .lineLimit(1)
+                    .font(.title2)
+                    .minimumScaleFactor(0.1)
 
                 Text("\(account.issuer)")
                     .lineLimit(1)
-                    .frame(width: 150)
+                    .minimumScaleFactor(0.1)
 
                 Text("\(account.user)")
                     .lineLimit(1)
                     .font(.footnote)
-                    .frame(maxWidth: 120)
+                    .minimumScaleFactor(0.1)
             }
-            .onAppear() {
+            .frame(width: 130)
+            .onAppear {
                 accountData.updateCode(account: account)
             }
             
@@ -55,7 +60,7 @@ struct AccountDetailView: View {
 
 struct AccountDetailView_Previews: PreviewProvider {
     static let accountData = AccountData()
-    static let account = Account.example
+    static let account = Account.example2
 
     static var previews: some View {
         AccountDetailView(account: account).environmentObject(accountData)
@@ -64,11 +69,11 @@ struct AccountDetailView_Previews: PreviewProvider {
 
 struct CustomCircularProgressViewStyle: ProgressViewStyle {
     func makeBody(configuration: Configuration) -> some View {
-            Circle()
-                .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
-                .stroke(Color.blue, style: StrokeStyle(lineWidth: 3))
-                .rotationEffect(.degrees(-90))
-                .scaledToFit()
-                .frame(width: 170, height: 170)
+        Circle()
+            .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
+            .stroke(Color.blue, style: StrokeStyle(lineWidth: 3))
+            .rotationEffect(.degrees(-90))
+//            .scaleEffect(CGSize(width: 1.1, height: 1.1))
+//            .minimumScaleFactor(0.1)
     }
 }

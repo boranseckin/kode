@@ -26,43 +26,74 @@ enum Delivery {
 
 struct TransferrableAccount {
     var id: UUID
+    var type: Types = .TOTP
     var secret: String
     var issuer: String
+    var algorithm: Algorithms = .SHA1
+    var digits: Digits = .SIX
+    var counter: Int?
     var user: String
     var label: String?
-    var code: String
-
-    init(id: String, secret: String, issuer: String, user: String, label: String?, code: String) {
-        self.id = UUID(uuidString: id)!
-        self.secret = secret
-        self.issuer = issuer
-        self.user = user
-        self.label = label
-        self.code = code
+    var code: String = "000000"
+    var order: Int = 999
+    
+    init(dict: [String: String]) {
+        self.id = UUID(uuidString: dict["id"]!)!
+        self.secret = dict["secret"]!
+        self.type = Types(rawValue: dict["type"]!)!
+        self.issuer = dict["issuer"]!
+        self.issuer = dict["issuer"]!
+        self.algorithm = Algorithms(rawValue: dict["algorithm"]!)!
+        self.digits = Digits(rawValue: Int(dict["digits"]!)!)!
+        self.counter = Int(dict["counter"]!)
+        self.user = dict["user"]!
+        self.label = dict["label"] ?? nil
+        self.code = dict["code"]!
+        self.order = Int(dict["order"]!)!
     }
 
     init(account: Account) {
         self.id = account.id
+        self.type = account.type
         self.secret = account.secret
         self.issuer = account.issuer
+        self.algorithm = account.algorithm
+        self.digits = account.digits
         self.user = account.user
         self.label = account.label
         self.code = account.code
+        self.order = account.order
     }
 
     func toDict() -> [String: String] {
         var dict = [String: String]()
         dict["id"] = id.uuidString
+        dict["type"] = type.rawValue
         dict["secret"] = secret
         dict["issuer"] = issuer
+        dict["algorithm"] = algorithm.rawValue
+        dict["digits"] = String(digits.rawValue)
+        dict["counter"] = order.description
         dict["user"] = user
         dict["label"] = label ?? nil
         dict["code"] = code
+        dict["order"] = order.description
         return dict
     }
 
     func toAccount() -> Account {
-        return Account(id: id, secret: secret, issuer: issuer, user: user, label: label, code: code)
+        return Account(
+            id: id,
+            type: type,
+            secret: secret,
+            issuer: issuer,
+            algorithm: algorithm,
+            digits: digits,
+            user: user,
+            label: label,
+            code: code,
+            order: order
+        )
     }
 }
 
@@ -175,15 +206,9 @@ extension Connectivity: WCSessionDelegate {
                 Connectivity.standard.accounts = []
 
                 for account in transfer as! [[String: String]] {
+                    print(account)
                     Connectivity.standard.accounts.append(
-                        TransferrableAccount(
-                            id: account["id"]!,
-                            secret: account["secret"]!,
-                            issuer: account["issuer"]!,
-                            user: account["user"]!,
-                            label: account["label"] ?? nil,
-                            code: account["code"]!
-                        ).toAccount()
+                        TransferrableAccount(dict: account).toAccount()
                     )
                 }
                 

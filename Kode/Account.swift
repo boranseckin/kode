@@ -9,13 +9,20 @@ import Foundation
 import SwiftUI
 import SwiftOTP
 
-enum Types: Codable, CaseIterable, Identifiable {
+enum Types: String, Codable, CaseIterable, Identifiable, CustomStringConvertible {
     case TOTP
     case HOTP
     var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .TOTP: return "TOTP"
+        case .HOTP: return "HOTP"
+        }
+    }
 }
 
-enum Algorithms: Codable, CaseIterable, Identifiable, CustomStringConvertible {
+enum Algorithms: String, Codable, CaseIterable, Identifiable, CustomStringConvertible {
     case SHA1
     case SHA256
     case SHA512
@@ -69,14 +76,19 @@ struct Account: Codable, Identifiable {
     static let example = Account(
         secret: "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
         issuer: "Company A",
+        digits: .SIX,
         user: "boran@boranseckin.com",
-        label: "Test Account"
+        label: "Test Account",
+        code: "123456"
     )
 
     static let example2 = Account(
         secret: "KUOEHG7ANDUFL4NAOIDN3BBV6LEVLT2N",
         issuer: "Company B",
-        user: "boran@boranseckin.com"
+        digits: .EIGHT,
+        user: "boran@boranseckin.com",
+        label: "Test Account",
+        code: "12341234"
     )
     #endif
     
@@ -165,19 +177,20 @@ class AccountData: ObservableObject {
     var timerCounter = 0
 
     init() {
-        #if !os(watchOS)
+    #if !os(watchOS)
         loadAll()
         #if !os(macOS)
         syncToWatch()
         #endif
 
         Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
+            
             self.loadAll()
             #if !os(macOS)
             self.syncToWatch()
             #endif
         }
-        #endif
+    #endif
     }
 
     func add(account: Account) {
