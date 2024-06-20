@@ -32,11 +32,11 @@ struct ContentViewMac: View {
                 .onReceive(timer) { time in
                     if !synced {
                         progress = (30 - Double(Calendar.current.component(.second, from: time) % 30)) / 30
-                        print("Time synced \(progress) (\(time))")
                         synced = true
                     } else {
-                        if progress - 0.01 <= 0.01 {
+                        if progress - 0.01 <= 0 {
                             progress = 1.0
+                            synced = false
                         } else {
                             progress -= 0.01 / 3
                         }
@@ -46,12 +46,9 @@ struct ContentViewMac: View {
             List {
                 ForEach(accountData.accounts) { account in
                     AccountRowViewMac(account: account)
-                        .onReceive(timer) { time in                            
-                            let seconds = Calendar.current.component(.second, from: time)
-                            if (seconds == 0 || seconds == 30) {
-                                accountData.updateCode(account: account)
-                            }
-                        }
+                        .onChange(of: synced, { oldValue, newValue in
+                            accountData.updateCode(account: account)
+                        })
                         .onAppear() {
                             accountData.updateCode(account: account)
                             #if os(macOS)
