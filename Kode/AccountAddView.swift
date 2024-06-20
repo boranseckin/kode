@@ -19,11 +19,15 @@ struct AccountAddView: View {
     @State private var issuer = ""
     @State private var label = ""
     @State private var user = ""
+    @State private var algorithm = Algorithms.SHA1
+    @State private var digits = Digits.SIX
     
-    @State private var permission = true
+    @State private var cameraPermission = true
     
-    @State private var showScanErrorAlert = false
     @State private var showCreateAlert = false
+    @State private var showScanAlert = false
+    
+    private let simulatedData = "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30"
 
     var body: some View {
         VStack {
@@ -38,8 +42,8 @@ struct AccountAddView: View {
             .padding()
 
             // MARK: QR Code Scanner
-            if (permission) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "otpauth://totp/ACME%20Co:john@example.com?secret=ELAMCYYZMBA7JFDRX4W2NZZ2CRPXH6BF&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30", completion: handleScan)
+            if (cameraPermission) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: simulatedData, completion: handleScan)
                     .contentShape(Rectangle())
                     .padding()
                 Text("Scan the QR code to add a new account\nor manually enter the details below.")
@@ -60,9 +64,6 @@ struct AccountAddView: View {
                 Section {
                     HStack {
                         TextField("Secret Key", text: $secret)
-                        #if os(macOS)
-                            .frame(width: 370)
-                        #endif
 
                         Divider()
 
@@ -88,6 +89,18 @@ struct AccountAddView: View {
                     #endif
 
                     TextField("Label (Optional)", text: $label)
+                    
+                    Picker("Algorithm", selection: $algorithm) {
+                        ForEach(Algorithms.allCases) { algorithm in
+                            Text(String(describing: algorithm))
+                        }
+                    }
+
+                    Picker("Digits", selection: $digits) {
+                        ForEach(Digits.allCases) { digits in
+                            Text(String(describing: digits))
+                        }
+                    }
                 }
                 
                 // MARK: Save Button
@@ -96,7 +109,7 @@ struct AccountAddView: View {
                     Spacer()
 
                     Button("Save", action: {
-                        if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label)) {
+                        if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label, digits: digits, algorithm: algorithm)) {
                             dismiss()
                         } else {
                             print("Manually adding new account failed.")
@@ -107,7 +120,7 @@ struct AccountAddView: View {
                 }
                 #else
                 Button("Save", action: {
-                    if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label)) {
+                    if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label, digits: digits, algorithm: algorithm)) {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
@@ -121,18 +134,24 @@ struct AccountAddView: View {
                 } message: {
                     Text("Please verify the secret and try again.")
                 }
+                .alert("Cannot create account", isPresented: $showScanAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("Please verify the QR code is valid and try again.")
+                }
                 #endif
             }
         }
         #if os(macOS)
         .padding()
+        .frame(minWidth: 500)
         #endif
     }
     
     // MARK: Handlers
-    func handleSubmit(secret: String, issuer: String, user: String, label: String) -> Bool {
+    func handleSubmit(secret: String, issuer: String, user: String, label: String, digits: Digits, algorithm: Algorithms) -> Bool {
         do {
-            let account = try createAccount(secret: secret, issuer: issuer, user: user, label: label)
+            let account = try createAccount(secret: secret, issuer: issuer, algorithm: algorithm, digits: digits, user: user, label: label)
             accountData.add(account: account)
             return true
         } catch {
@@ -143,23 +162,27 @@ struct AccountAddView: View {
     
     #if os(iOS)
     func handleScan(result: Result<ScanResult, ScanError>) {
+        print(result)
         switch result {
-        case .success(let result):
-            do {
-                let account = try createAccountFromURIString(string: result.string)
-                accountData.add(account: account)
-                dismiss()
-            } catch {
-                print(error)
-            }
-        case .failure(let error):
-            switch error {
-            case ScanError.permissionDenied:
-                permission = false
-            default: break
-            }
-
-            print("Scanning failed: \(error.localizedDescription)")
+            case .success(let result):
+                do {
+                    let account = try createAccountFromURIString(string: result.string)
+                    accountData.add(account: account)
+                    dismiss()
+                } catch {
+                    print(error)
+                    showScanAlert = true
+                }
+            case .failure(let error):
+                switch error {
+                    case ScanError.permissionDenied:
+                        Task { @MainActor in
+                            cameraPermission = false
+                        }
+                    default:
+                        print("Scanning failed: \(error.localizedDescription)")
+                        showScanAlert = true
+                }
         }
     }
     #endif
