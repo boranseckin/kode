@@ -13,7 +13,9 @@ struct ContentView: View {
     @EnvironmentObject var accountData: AccountData
     @Environment(\.scenePhase) var scenePhase
 
-    @State private var progress = 30.0
+    @State private var progress = 1.0
+    @State private var synced = false
+
     @State private var showAdd = false
     @State private var showDeleteAlert = false
     @State private var toBeDeleted: IndexSet?
@@ -49,11 +51,23 @@ struct ContentView: View {
             } else {
                 NavigationStack {
                     VStack {
-                        ProgressView(value: progress, total: 30)
+                        ProgressBarView(progress: $progress)
                             .padding(.init(top: 1, leading: 15, bottom: 0, trailing: 15))
-                            .scaleEffect(x: 1, y: 2, anchor: .center)
+                            .onAppear {
+                                synced = false
+                            }
                             .onReceive(timer) { time in
-                                progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
+                                if !synced {
+                                    progress = (30 - Double(Calendar.current.component(.second, from: time) % 30)) / 30
+                                    print("Time synced \(progress) (\(time))")
+                                    synced = true
+                                } else {
+                                    if progress - 0.01 <= 0.01 {
+                                        progress = 1.0
+                                    } else {
+                                        progress -= 0.01 / 3
+                                    }
+                                }
                             }
                         
                         List {

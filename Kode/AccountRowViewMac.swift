@@ -13,7 +13,6 @@ struct AccountRowViewMac: View {
     @State var tap = false
     
     var account: Account
-    var progress: Double
 
     var body: some View {
         #if os(macOS)
@@ -43,8 +42,6 @@ struct AccountRowViewMac: View {
             Text("\(account.user)")
                 .lineLimit(1)
                 .font(.subheadline)
-
-            ProgressView(value: progress, total: 30)
         }
         .contentShape(Rectangle())
         .onTapGesture {
@@ -68,10 +65,8 @@ struct AccountRowViewMac: View {
 struct AccountRowViewMac_Previews: PreviewProvider {
     static let accountData = AccountData()
     static let account = Account.example
-    static let progress = 15.0
 
     static var previews: some View {
-        AccountRowViewMac(account: account, progress: progress)
-            .environmentObject(accountData)
+        AccountRowViewMac(account: account).environmentObject(accountData)
     }
 }

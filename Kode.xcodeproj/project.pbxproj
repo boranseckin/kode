@@ -21,6 +21,7 @@
 		54522D972984EDEF00D46D0B /* SettingsViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54522D962984EDEF00D46D0B /* SettingsViewMac.swift */; };
 		54671931298501CC0079F4D7 /* AccountRowViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54671930298501CC0079F4D7 /* AccountRowViewMac.swift */; };
 		54694C4D2BAF7FF400855991 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54694C4C2BAF7FF400855991 /* ContentView.swift */; };
+		546BF2ED2C2489F30038E2A6 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546BF2EC2C2489F30038E2A6 /* ProgressBarView.swift */; };
 		547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */; };
 		547A32A4298618F200B5DD69 /* ContentViewWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547A32A3298618F200B5DD69 /* ContentViewWatch.swift */; };
 		547A32A6298618F300B5DD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547A32A5298618F300B5DD69 /* Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		54522D962984EDEF00D46D0B /* SettingsViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewMac.swift; sourceTree = "<group>"; };
 		54671930298501CC0079F4D7 /* AccountRowViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowViewMac.swift; sourceTree = "<group>"; };
 		54694C4C2BAF7FF400855991 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		546BF2EC2C2489F30038E2A6 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		547A3299298600C300B5DD69 /* AccountDetailViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewMac.swift; sourceTree = "<group>"; };
 		547A329F298618F200B5DD69 /* Kode Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kode Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		547A32A3298618F200B5DD69 /* ContentViewWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewWatch.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				5410B9E22975C25100E2839E /* KodeApp.swift */,
 				54694C4C2BAF7FF400855991 /* ContentView.swift */,
 				540BDAF1297B0B7400080596 /* ContentViewMac.swift */,
+				546BF2EC2C2489F30038E2A6 /* ProgressBarView.swift */,
 				54FF61992978721B000E5D5E /* SettingsView.swift */,
 				54522D962984EDEF00D46D0B /* SettingsViewMac.swift */,
 				54519FB3297AEC65009FA667 /* AcknowledgmentView.swift */,
@@ -327,6 +330,7 @@
 				547A329A298600C300B5DD69 /* AccountDetailViewMac.swift in Sources */,
 				540A9DCE29779FD3005893D3 /* Account.swift in Sources */,
 				54FF619E29787522000E5D5E /* AccountAddView.swift in Sources */,
+				546BF2ED2C2489F30038E2A6 /* ProgressBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

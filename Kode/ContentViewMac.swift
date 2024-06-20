@@ -13,7 +13,9 @@ struct ContentViewMac: View {
     
     @AppStorage("alwaysOnTop") private var alwaysOnTop = true
 
-    @State private var progress = 30.0
+    @State private var progress = 1.0
+    @State private var synced = false
+
     @State private var showAdd = false
     @State private var showDeleteAlert = false
     @State private var toBeDeleted: IndexSet?
@@ -21,23 +23,42 @@ struct ContentViewMac: View {
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        List {
-            ForEach(accountData.accounts) { account in
-                AccountRowViewMac(account: account, progress: progress)
-                    .onReceive(timer) { time in
-                        progress = 30 - Double(Calendar.current.component(.second, from: time) % 30)
-                        
-                        let seconds = Calendar.current.component(.second, from: time)
-                        if (seconds == 0 || seconds == 30) {
-                            accountData.updateCode(account: account)
+        VStack {
+            ProgressBarView(progress: $progress)
+                .padding(.init(top: 7, leading: 10, bottom: 0, trailing: 10))
+                .onAppear {
+                    synced = false
+                }
+                .onReceive(timer) { time in
+                    if !synced {
+                        progress = (30 - Double(Calendar.current.component(.second, from: time) % 30)) / 30
+                        print("Time synced \(progress) (\(time))")
+                        synced = true
+                    } else {
+                        if progress - 0.01 <= 0.01 {
+                            progress = 1.0
+                        } else {
+                            progress -= 0.01 / 3
                         }
                     }
-                    .onAppear() {
-                        accountData.updateCode(account: account)
-                        #if os(macOS)
-                        updateWindowLevel(level: alwaysOnTop ? .floating : .normal)
-                        #endif
-                    }
+                }
+
+            List {
+                ForEach(accountData.accounts) { account in
+                    AccountRowViewMac(account: account)
+                        .onReceive(timer) { time in                            
+                            let seconds = Calendar.current.component(.second, from: time)
+                            if (seconds == 0 || seconds == 30) {
+                                accountData.updateCode(account: account)
+                            }
+                        }
+                        .onAppear() {
+                            accountData.updateCode(account: account)
+                            #if os(macOS)
+                            updateWindowLevel(level: alwaysOnTop ? .floating : .normal)
+                            #endif
+                        }
+                }
             }
         }
         .navigationTitle("Kode")
