@@ -18,32 +18,6 @@ struct AccountDetailView: View {
 
     var body: some View {
         ZStack(alignment: .center) {
-            VStack {
-                if (account.label != nil) {
-                    Text("\(account.label!)")
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.1)
-                }
-                
-                Text(account.formattedCode())
-                    .lineLimit(1)
-                    .font(.title2)
-                    .minimumScaleFactor(0.1)
-
-                Text("\(account.issuer)")
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.1)
-
-                Text("\(account.user)")
-                    .lineLimit(1)
-                    .font(.footnote)
-                    .minimumScaleFactor(0.1)
-            }
-            .frame(width: 130)
-            .onAppear {
-                accountData.updateCode(account: account)
-            }
-            
             ProgressView(value: progress, total: 30)
                 .progressViewStyle(CustomCircularProgressViewStyle())
                 .onReceive(timer) { time in
@@ -54,6 +28,42 @@ struct AccountDetailView: View {
                         accountData.updateCode(account: account)
                     }
                 }
+
+            GeometryReader { geo in
+                HStack(alignment: .center) {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        Spacer()
+                        VStack {
+                            if (account.label != nil) {
+                                Text("\(account.label!)")
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.1)
+                            }
+
+                            Text(account.formattedCode())
+                                .lineLimit(1)
+                                .font(.title2)
+                                .minimumScaleFactor(0.1)
+
+                            Text(account.issuer)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.1)
+
+                            Text(account.user)
+                                .lineLimit(1)
+                                .font(.footnote)
+                                .minimumScaleFactor(0.1)
+                        }
+                        .onAppear {
+                            accountData.updateCode(account: account)
+                        }
+                        .frame(width: geo.size.width * 0.8, height: geo.size.height * 0.8)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            }
         }
     }
 }
@@ -73,7 +83,6 @@ struct CustomCircularProgressViewStyle: ProgressViewStyle {
             .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
             .stroke(Color.blue, style: StrokeStyle(lineWidth: 3))
             .rotationEffect(.degrees(-90))
-//            .scaleEffect(CGSize(width: 1.1, height: 1.1))
-//            .minimumScaleFactor(0.1)
+            .scaledToFill()
     }
 }
