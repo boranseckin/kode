@@ -17,13 +17,10 @@ struct AccountRowViewMac: View {
     var body: some View {
         #if os(macOS)
         VStack(alignment: .leading) {
-            if (account.label != nil) {
-                Text("\(account.label!) • \(account.issuer)")
-                    .font(.subheadline)
-            } else {
-                Text("\(account.issuer)")
-                    .font(.subheadline)
-            }
+            Text(account.label != nil ? "\(account.label!) • \(account.issuer)" : "\(account.issuer)")
+                .font(.subheadline)
+                .textSelection(.enabled)
+                .lineLimit(1)
 
             HStack {
                 Text(account.formattedCode())
@@ -42,6 +39,7 @@ struct AccountRowViewMac: View {
             Text("\(account.user)")
                 .lineLimit(1)
                 .font(.subheadline)
+                .textSelection(.enabled)
         }
         .contentShape(Rectangle())
         .onTapGesture {
