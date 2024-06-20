@@ -34,11 +34,10 @@ struct ContentViewMac: View {
                         progress = (30 - Double(Calendar.current.component(.second, from: time) % 30)) / 30
                         synced = true
                     } else {
-                        if progress - 0.01 <= 0 {
+                        progress -= 0.01 / 3
+                        if progress <= 0 {
                             progress = 1.0
                             synced = false
-                        } else {
-                            progress -= 0.01 / 3
                         }
                     }
                 }

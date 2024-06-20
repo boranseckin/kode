@@ -14,7 +14,6 @@ struct AccountRowView: View {
     @State var tap = false
 
     var account: Account
-    var progress: Double
 
     var body: some View {
         let issuer = account.issuer == "" ? "Unknown" : account.issuer
@@ -74,9 +73,8 @@ struct AccountRowView: View {
 struct AccountRowView_Previews: PreviewProvider {
     static let accountData = AccountData()
     static let account = Account.example
-    static let progress = 15.0
 
     static var previews: some View {
-        AccountRowView(account: account, progress: progress).environmentObject(accountData)
+        AccountRowView(account: account).environmentObject(accountData)
     }
 }

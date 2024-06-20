@@ -19,7 +19,7 @@ struct ProgressBarView: View {
                     .foregroundColor(.gray)
                 
                 RoundedRectangle(cornerRadius: 25)
-                    .frame(width: progress * geo.size.width, height: 10)
+                    .frame(width: max(progress, 0) * geo.size.width, height: 10)
                     .foregroundColor(.blue)
                     .animation(.easeInOut, value: progress)
             }
