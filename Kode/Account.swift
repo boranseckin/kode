@@ -15,7 +15,7 @@ enum Types: Codable, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
-enum Algorithms: Codable, CaseIterable, Identifiable {
+enum Algorithms: Codable, CaseIterable, Identifiable, CustomStringConvertible {
     case SHA1
     case SHA256
     case SHA512
@@ -28,12 +28,27 @@ enum Algorithms: Codable, CaseIterable, Identifiable {
         case .SHA512: return OTPAlgorithm.sha512
         }
     }
+    
+    var description: String {
+        switch self {
+        case .SHA1: return "SHA1 (Default)"
+        case .SHA256: return "SHA256"
+        case .SHA512: return "SHA512"
+        }
+    }
 }
 
-enum Digits: Int, Codable, CaseIterable, Identifiable {
+enum Digits: Int, Codable, CaseIterable, Identifiable, CustomStringConvertible {
     case SIX = 6
     case EIGHT = 8
     var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .SIX: return "Six (Default)"
+        case .EIGHT: return "Eight"
+        }
+    }
 }
 
 // MARK: Account
