@@ -15,7 +15,6 @@ struct AccountDetailView: View {
 
     @State private var secret = ""
     @State private var issuer = ""
-    @State private var label = ""
     @State private var user = ""
     @State private var type = Types.TOTP
     @State private var algorithm = Algorithms.SHA1
@@ -41,10 +40,6 @@ struct AccountDetailView: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                     #endif
-            }
-            
-            Section(header: Text("Label").font(.caption).foregroundStyle(.gray)) {
-                TextField("Label", text: $label)
             }
             
             Section(header: Text("Advanced").font(.caption).foregroundStyle(.gray)) {
@@ -90,7 +85,6 @@ struct AccountDetailView: View {
             secret = account.secret
             issuer = account.issuer
             user = account.user
-            label = account.label ?? ""
             type = account.type
             algorithm = account.algorithm
             digits = account.digits
@@ -102,7 +96,6 @@ struct AccountDetailView: View {
                     var newAccount = account
                     newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
                     newAccount.user = user.isEmpty ? account.user : user
-                    newAccount.label = label.isEmpty ? nil : label
                     newAccount.type = type
                     newAccount.algorithm = algorithm
                     newAccount.digits = digits

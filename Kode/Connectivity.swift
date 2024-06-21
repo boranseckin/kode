@@ -33,7 +33,6 @@ struct TransferrableAccount {
     var digits: Digits = .SIX
     var counter: Int?
     var user: String
-    var label: String?
     var code: String = "000000"
     var order: Int = 999
     
@@ -47,7 +46,6 @@ struct TransferrableAccount {
         self.digits = Digits(rawValue: Int(dict["digits"]!)!)!
         self.counter = Int(dict["counter"]!)
         self.user = dict["user"]!
-        self.label = dict["label"] ?? nil
         self.code = dict["code"]!
         self.order = Int(dict["order"]!)!
     }
@@ -60,7 +58,6 @@ struct TransferrableAccount {
         self.algorithm = account.algorithm
         self.digits = account.digits
         self.user = account.user
-        self.label = account.label
         self.code = account.code
         self.order = account.order
     }
@@ -75,7 +72,6 @@ struct TransferrableAccount {
         dict["digits"] = String(digits.rawValue)
         dict["counter"] = order.description
         dict["user"] = user
-        dict["label"] = label ?? nil
         dict["code"] = code
         dict["order"] = order.description
         return dict
@@ -90,7 +86,6 @@ struct TransferrableAccount {
             algorithm: algorithm,
             digits: digits,
             user: user,
-            label: label,
             code: code,
             order: order
         )

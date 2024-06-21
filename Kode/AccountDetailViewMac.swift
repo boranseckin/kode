@@ -15,7 +15,6 @@ struct AccountDetailViewMac: View {
 
     @State private var secret = ""
     @State private var issuer = ""
-    @State private var label = ""
     @State private var user = ""
     @State private var algorithm = Algorithms.SHA1
     @State private var digits = Digits.SIX
@@ -33,9 +32,7 @@ struct AccountDetailViewMac: View {
             TextField("Issuer", text: $issuer)
             
             TextField("User", text: $user)
-            
-            TextField("Label", text: $label)
-            
+                        
             Picker("Algorithm", selection: $algorithm) {
                 ForEach(Algorithms.allCases) { algorithm in
                     Text(String(describing: algorithm))
@@ -60,7 +57,6 @@ struct AccountDetailViewMac: View {
                     var newAccount = account
                     newAccount.issuer = issuer.isEmpty ? account.issuer : issuer
                     newAccount.user = user.isEmpty ? account.user : user
-                    newAccount.label = label.isEmpty ? nil : label
                     newAccount.algorithm = algorithm
                     newAccount.digits = digits
                     accountData.modify(account: newAccount)
@@ -75,7 +71,6 @@ struct AccountDetailViewMac: View {
             secret = account.secret
             issuer = account.issuer
             user = account.user
-            label = account.label ?? ""
             algorithm = account.algorithm
             digits = account.digits
         }

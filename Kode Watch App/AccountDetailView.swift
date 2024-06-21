@@ -45,19 +45,13 @@ struct AccountDetailView: View {
                     VStack(alignment: .center) {
                         Spacer()
                         VStack {
-                            if (account.label != nil) {
-                                Text(account.label!)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.1)
-                            }
+                            Text(account.issuer)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.1)
 
                             Text(account.formattedCode())
                                 .lineLimit(1)
-                                .font(.title2)
-                                .minimumScaleFactor(0.1)
-
-                            Text(account.issuer)
-                                .lineLimit(1)
+                                .font(.title)
                                 .minimumScaleFactor(0.1)
 
                             Text(account.user)

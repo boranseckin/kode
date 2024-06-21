@@ -22,11 +22,11 @@ struct AccountRowView: View {
         VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(account.label != nil ? "\(account.label!) • \(issuer)" : issuer)
+                    Text(issuer)
                         .lineLimit(1)
                         .font(.title3)
                     
-                    Text("\(account.user)")
+                    Text(account.user)
                         .lineLimit(1)
                         .font(.caption)
                 }

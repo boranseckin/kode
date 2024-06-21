@@ -17,7 +17,6 @@ struct AccountAddView: View {
 
     @State private var secret = ""
     @State private var issuer = ""
-    @State private var label = ""
     @State private var user = ""
     @State private var algorithm = Algorithms.SHA1
     @State private var digits = Digits.SIX
@@ -87,8 +86,6 @@ struct AccountAddView: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.emailAddress)
                     #endif
-
-                    TextField("Label (Optional)", text: $label)
                     
                     Picker("Algorithm", selection: $algorithm) {
                         ForEach(Algorithms.allCases) { algorithm in
@@ -109,7 +106,7 @@ struct AccountAddView: View {
                     Spacer()
 
                     Button("Save", action: {
-                        if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label, digits: digits, algorithm: algorithm)) {
+                        if (handleSubmit(secret: secret, issuer: issuer, user: user, digits: digits, algorithm: algorithm)) {
                             dismiss()
                         } else {
                             print("Manually adding new account failed.")
@@ -120,7 +117,7 @@ struct AccountAddView: View {
                 }
                 #else
                 Button("Save", action: {
-                    if (handleSubmit(secret: secret, issuer: issuer, user: user, label: label, digits: digits, algorithm: algorithm)) {
+                    if (handleSubmit(secret: secret, issuer: issuer, user: user, digits: digits, algorithm: algorithm)) {
                         dismiss()
                     } else {
                         print("Manually adding new account failed.")
@@ -149,9 +146,9 @@ struct AccountAddView: View {
     }
     
     // MARK: Handlers
-    func handleSubmit(secret: String, issuer: String, user: String, label: String, digits: Digits, algorithm: Algorithms) -> Bool {
+    func handleSubmit(secret: String, issuer: String, user: String, digits: Digits, algorithm: Algorithms) -> Bool {
         do {
-            let account = try createAccount(secret: secret, issuer: issuer, algorithm: algorithm, digits: digits, user: user, label: label)
+            let account = try createAccount(secret: secret, issuer: issuer, algorithm: algorithm, digits: digits, user: user)
             accountData.add(account: account)
             return true
         } catch {

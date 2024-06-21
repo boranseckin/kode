@@ -18,13 +18,13 @@ struct AccountRowViewMac: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(account.label != nil ? "\(account.label!) • \(account.issuer)" : "\(account.issuer)")
+                Text(account.issuer)
                     .font(.title3)
                     .bold()
                     .textSelection(.enabled)
                     .lineLimit(1)
 
-                Text("\(account.user)")
+                Text(account.user)
                     .lineLimit(1)
                     .font(.subheadline)
                     .textSelection(.enabled)

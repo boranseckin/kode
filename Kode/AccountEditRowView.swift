@@ -24,13 +24,9 @@ struct AccountEditRowView: View {
             #endif
             
             VStack(alignment: .leading) {
-                if (account.label != nil) {
-                    Text("\(account.label!)")
-                }
+                Text(account.issuer == "" ? "Unknown" : account.issuer)
                 
-                Text("\(account.issuer == "" ? "Unknown" : account.issuer)")
-                
-                Text("\(account.user)")
+                Text(account.user)
                     .font(.subheadline)
             }
             

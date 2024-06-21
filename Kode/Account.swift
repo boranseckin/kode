@@ -78,7 +78,6 @@ struct Account: Codable, Identifiable {
         issuer: "Company A",
         digits: .SIX,
         user: "boran@boranseckin.com",
-        label: "Test Account",
         code: "123456"
     )
 
@@ -87,7 +86,6 @@ struct Account: Codable, Identifiable {
         issuer: "Company B",
         digits: .EIGHT,
         user: "boran@boranseckin.com",
-        label: "Test Account",
         code: "12341234"
     )
     #endif
@@ -107,8 +105,7 @@ func createAccount(
     algorithm: Algorithms = .SHA1,
     digits: Digits = .SIX,
     counter: Int? = nil,
-    user: String,
-    label: String?
+    user: String
 ) throws -> Account {
     guard let _ = base32DecodeToData(secret) else {
         throw "Invalid secret (cannot decode Base32)."
@@ -125,8 +122,7 @@ func createAccount(
         algorithm: algorithm,
         digits: digits,
         counter: counter,
-        user: user,
-        label: (label != nil && !label!.isEmpty) ? label : nil
+        user: user
     )
 }
 
