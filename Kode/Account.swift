@@ -257,7 +257,6 @@ class AccountData: ObservableObject {
         }
 
         Connectivity.standard.send(accounts: transfer, delivery: .highPriority)
-        print("Synced")
     }
     #endif
 
@@ -300,7 +299,6 @@ class AccountData: ObservableObject {
 
             let index = accounts.firstIndex(where: { $0.id == account.id })
             if index == nil {
-                print("Loaded: \(account.id) - \(account.order)")
                 accounts.append(account)
             } else {
                 accounts[index!] = account
@@ -319,7 +317,6 @@ class AccountData: ObservableObject {
             for fetchedAccount in fetchedAccounts {
                 let account = Bundle.main.decode(Account.self, from: fetchedAccount)
                 if !accounts.contains(where: { $0.id == account.id }) {
-                    print("Loaded: \(account.id) - \(account.order)")
                     accounts.append(account)
                     updateCode(account: account)
                 }
