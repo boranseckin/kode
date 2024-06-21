@@ -5,6 +5,7 @@
 //  Created by Boran Seckin on 2023-01-18.
 //
 
+#if !os(macOS)
 import SwiftUI
 import Accounts
 
@@ -18,40 +19,37 @@ struct AccountRowView: View {
     var body: some View {
         let issuer = account.issuer == "" ? "Unknown" : account.issuer
 
-        Section(
-            header: account.label != nil
-                ? Text("\(account.label!) • \(issuer)")
-                : Text("\(issuer)")
-        ) {
+        VStack(alignment: .leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(account.formattedCode())
-                        .font(.title)
-                        .bold()
-                        #if os(macOS)
-                        .textSelection(.enabled)
-                        #endif
-                    
+                    Text(account.label != nil ? "\(account.label!) • \(issuer)" : issuer)
+                        .lineLimit(1)
+                        .font(.title3)
                     
                     Text("\(account.user)")
                         .lineLimit(1)
-                        .font(.subheadline)
+                        .font(.caption)
                 }
+                
                 Spacer()
 
                 if (tap) {
                     Text("Copied")
+                        .font(.title3)
+                } else {
+                    Text(account.formattedCode())
+                        .font(.title)
+                        .bold()
+                        .monospaced()
+                        .lineLimit(1)
+                        .fixedSize()
                 }
+                
                 Image(systemName: tap ? "checkmark" : "clipboard")
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                #if os(macOS)
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setString(account.code, forType: .string)
-                #else
                 UIPasteboard.general.string = account.code
-                #endif
 
                 withAnimation(.linear(duration: 0.2)) {
                     tap.toggle()
@@ -63,9 +61,7 @@ struct AccountRowView: View {
                     }
                 }
             }
-            #if os(iOS)
-            .scaleEffect(tap ? 1.01 : 1)
-            #endif
+//            .scaleEffect(tap ? 1.01 : 1)
         }
     }
 }
@@ -78,3 +74,4 @@ struct AccountRowView_Previews: PreviewProvider {
         AccountRowView(account: account).environmentObject(accountData)
     }
 }
+#endif

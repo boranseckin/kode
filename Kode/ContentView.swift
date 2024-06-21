@@ -75,6 +75,7 @@ struct ContentView: View {
                                     AccountEditRowView(account: account)
                                 } else {
                                     AccountRowView(account: account)
+                                        .padding(.vertical, 4)
                                         .moveDisabled(true)
                                         .deleteDisabled(true)
                                         .onChange(of: synced, { oldValue, newValue in

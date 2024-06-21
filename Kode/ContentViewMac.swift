@@ -45,6 +45,7 @@ struct ContentViewMac: View {
             List {
                 ForEach(accountData.accounts) { account in
                     AccountRowViewMac(account: account)
+                        .padding(.vertical, 8)
                         .onChange(of: synced, { oldValue, newValue in
                             accountData.updateCode(account: account)
                         })
