@@ -2,7 +2,7 @@
 An iOS/macOS app for two-factor-authentication codes
 
 ## License
-Kode is available under the MIT license. See the [LICENSE](LICENSE.md) file for more info.
+Kode is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
 ## Acknowledgment
 Kode uses the following projects:
