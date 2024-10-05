@@ -180,7 +180,6 @@ class AccountData: ObservableObject {
         #endif
 
         Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
-            
             self.loadAll()
             #if !os(macOS)
             self.syncToWatch()
@@ -269,7 +268,7 @@ class AccountData: ObservableObject {
                 print("Saved: \(id)")
             }
         } catch {
-            fatalError("Failed to save keychain data: \(error)")
+            print("Failed to save keychain data: \(error)")
         }
     }
     
@@ -283,7 +282,7 @@ class AccountData: ObservableObject {
                 print("Saved (All): \(orderedAccount.id) - \(orderedAccount.order) (\(account.order))")
             }
         } catch {
-            fatalError("Failed to save all keychain data: \(error)")
+            print("Failed to save all keychain data: \(error)")
         }
     }
     
@@ -305,7 +304,7 @@ class AccountData: ObservableObject {
             }
             accounts.sort(by: { $0.order < $1.order })
         } catch {
-            fatalError("Failed to retrieve keychain data: \(error)")
+            print("Failed to retrieve keychain data: \(error)")
         }
     }
     
@@ -323,7 +322,7 @@ class AccountData: ObservableObject {
             }
             accounts.sort(by: { $0.order < $1.order })
         } catch {
-            fatalError("Failed to retrieve keychain data: \(error)")
+            print("Failed to retrieve keychain data: \(error)")
         }
     }
     
@@ -333,7 +332,7 @@ class AccountData: ObservableObject {
             try KeychainHelper.standard.delete(account: id)
             print("Deleted: \(id)")
         } catch {
-            fatalError("Failed to delete keychain data: \(error)")
+            print("Failed to delete keychain data: \(error)")
         }
     }
     
@@ -343,7 +342,7 @@ class AccountData: ObservableObject {
             accounts = []
             print("Deleted all!")
         } catch {
-            fatalError("Failed to delete all keychain data: \(error)")
+            print("Failed to delete all keychain data: \(error)")
         }
     }
 }
