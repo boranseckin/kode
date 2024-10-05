@@ -107,6 +107,7 @@ struct ContentView: View {
                                 )
                             })
                         }
+                        .contentMargins(.top, 12, for: .scrollContent)
                         .listSectionSpacing(0)
                         .listStyle(.insetGrouped)
                         .toolbar {
