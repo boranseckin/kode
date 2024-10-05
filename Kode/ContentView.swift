@@ -17,9 +17,6 @@ struct ContentView: View {
     @State private var synced = false
 
     @State private var showAdd = false
-    @State private var showDeleteAlert = false
-    @State private var toBeDeleted: IndexSet?
-    @State private var editMode: EditMode = .inactive
     
     @State private var isUnlocked = true
     @State private var debounceAuth = false
@@ -72,54 +69,10 @@ struct ContentView: View {
                                     }
                                 }
                             
-                            List {
-                                ForEach(accountData.accounts) { account in
-                                    if (editMode == .active) {
-                                        AccountEditRowView(account: account)
-                                    } else {
-                                        AccountRowView(account: account)
-                                            .padding(.vertical, 4)
-                                            .moveDisabled(true)
-                                            .deleteDisabled(true)
-                                            .onChange(of: synced, { oldValue, newValue in
-                                                accountData.updateCode(account: account)
-                                            })
-                                            .onAppear() {
-                                                accountData.updateCode(account: account)
-                                            }
-                                    }
-                                }
-                                .onMove(perform: accountData.move)
-                                .onDelete(perform: { index in
-                                    toBeDeleted = index
-                                    showDeleteAlert.toggle()
-                                })
-                                .alert(isPresented: $showDeleteAlert, content: {
-                                    Alert(
-                                        title: Text("Are you sure you want to delete this account?"),
-                                        message: Text("This action is irreversable!"),
-                                        primaryButton: .destructive(Text("Yes")) {
-                                            accountData.remove(at: toBeDeleted!)
-                                            toBeDeleted = nil
-                                            showDeleteAlert = false
-                                        },
-                                        secondaryButton: .cancel() {
-                                            toBeDeleted = nil
-                                            showDeleteAlert = false
-                                        }
-                                    )
-                                })
-                            }
-                            .contentMargins(.top, 12, for: .scrollContent)
-                            .listSectionSpacing(0)
-                            .listStyle(.insetGrouped)
+                            ListView(synced: $synced).environmentObject(accountData)
                         }
                     }
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            EditButton()
-                        }
-
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button {
                                 showAdd.toggle()
@@ -134,7 +87,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .environment(\.editMode, $editMode)
                     .navigationTitle("Kode")
                     .navigationBarTitleDisplayMode(.inline)
                 }

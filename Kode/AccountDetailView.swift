@@ -65,12 +65,13 @@ struct AccountDetailView: View {
             Section(header: Text("").font(.caption).foregroundStyle(.gray)) {
                 Button("Delete", role: .destructive) {
                     showDeleteAlert.toggle()
-                }.alert(isPresented: $showDeleteAlert, content: {
+                }
+                .alert(isPresented: $showDeleteAlert, content: {
                     Alert(
-                        title: Text("Are you sure you want to delete this account?"),
-                        message: Text("This action is irreversable!"),
-                        primaryButton: .destructive(Text("Yes")) {
-                            accountData.remove(at: [accountData.accounts.firstIndex(where: { $0.id == account.id })!])
+                        title: Text("Are you sure you want to remove this account?"),
+                        message: Text("This action cannot be undone!"),
+                        primaryButton: .destructive(Text("Remove")) {
+                            accountData.remove(account: account)
                             showDeleteAlert = false
                             dismiss()
                         },

@@ -194,8 +194,15 @@ class AccountData: ObservableObject {
         accounts.append(newAccount)
         save(id: account.id)
     }
+    
+    func remove(account: Account) {
+        delete(id: account.id)
+        if let i = accounts.firstIndex(where: { $0.id == account.id }) {
+            accounts.remove(at: i)
+        }
+    }
 
-    func remove(at offset: IndexSet) {
+    func removeAt(at offset: IndexSet) {
         for index in offset {
             delete(id: accounts[index].id)
         }
