@@ -28,6 +28,7 @@ struct ContentViewWatch: View {
                     if (connectivity.accounts.count == 0) {
                         ProgressView()
                             .progressViewStyle(.circular)
+                        Text("Waiting for accounts to sync...")
                     } else {
                         List {
                             ForEach(connectivity.accounts) { account in
