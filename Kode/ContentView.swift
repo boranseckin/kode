@@ -49,7 +49,10 @@ struct ContentView: View {
                 NavigationStack {
                     VStack {
                         if accountData.accounts.count == 0 {
-                            Text("Add a new account")
+                            Image(systemName: "person.fill.badge.plus")
+                                .font(.largeTitle)
+                            Text("Start by adding a new account")
+                                .multilineTextAlignment(.center)
                         } else {
                             ProgressBarView(progress: $progress)
                                 .padding(.init(top: 1, leading: 15, bottom: 0, trailing: 15))
@@ -75,9 +78,9 @@ struct ContentView: View {
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button {
-                                showAdd.toggle()
+                                showAdd = true
                             } label: {
-                                Image(systemName: "plus")
+                                Image(systemName: "person.fill.badge.plus")
                             }.sheet(isPresented: $showAdd, content: {
                                 AccountAddView()
                             })
