@@ -1,6 +1,11 @@
 # kode
 An iOS/macOS app for two-factor-authentication codes
 
+## Support
+If you're experiencing issues or have questions, feel free to reach out:
+- Email: [boran@boranseckin.com](mailto:boran@boranseckin.com) – For any support inquiries or technical issues.
+- GitHub Issues: [Submit an Issue](https://github.com/boranseckin/kode/issues/new/choose) – Report bugs or suggest improvements directly on our GitHub repository.
+
 ## License
 Kode is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
