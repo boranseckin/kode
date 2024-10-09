@@ -5,6 +5,7 @@
 //  Created by Boran Seckin on 2024-10-04.
 //
 
+#if !os(macOS)
 import SwiftUI
 
 struct ListView: View {
@@ -70,3 +71,4 @@ struct ListView: View {
 #Preview {
     ListView(synced: .constant(true))
 }
+#endif

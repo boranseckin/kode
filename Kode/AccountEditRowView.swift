@@ -58,10 +58,10 @@ struct AccountEditRowView: View {
                     .foregroundColor(.red)
             }.alert(isPresented: $showDeleteAlert, content: {
                 Alert(
-                    title: Text("Are you sure you want to delete this account?"),
-                    message: Text("This action is irreversable!"),
-                    primaryButton: .destructive(Text("Yes")) {
-                        accountData.remove(at: [accountData.accounts.firstIndex(where: { $0.id == account.id })!])
+                    title: Text("Are you sure you want to remove this account?"),
+                    message: Text("This action cannot be undone."),
+                    primaryButton: .destructive(Text("Remove")) {
+                        accountData.remove(account: account)
                         toBeDeleted = nil
                         showDeleteAlert = false
                     },
