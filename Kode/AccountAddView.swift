@@ -110,10 +110,16 @@ struct AccountAddView: View {
                             dismiss()
                         } else {
                             print("Manually adding new account failed.")
+                            showCreateAlert = true
                         }
                     })
                     .disabled(secret.isEmpty || issuer.isEmpty || user.isEmpty)
                     .keyboardShortcut(.defaultAction)
+                    .alert("Account cannot be created", isPresented: $showCreateAlert) {
+                        Button("OK", role: .cancel) { }
+                    } message: {
+                        Text("Please verify the secret is valid and try again.")
+                    }
                 }
                 #else
                 Button("Save", action: {
@@ -126,12 +132,12 @@ struct AccountAddView: View {
                 })
                 .disabled(secret.isEmpty || issuer.isEmpty || user.isEmpty)
                 .keyboardShortcut(.defaultAction)
-                .alert("Cannot create account", isPresented: $showCreateAlert) {
+                .alert("Account cannot be created", isPresented: $showCreateAlert) {
                     Button("OK", role: .cancel) { }
                 } message: {
-                    Text("Please verify the secret and try again.")
+                    Text("Please verify the secret is valid and try again.")
                 }
-                .alert("Cannot create account", isPresented: $showScanAlert) {
+                .alert("Account cannot be created", isPresented: $showScanAlert) {
                     Button("OK", role: .cancel) { }
                 } message: {
                     Text("Please verify the QR code is valid and try again.")
