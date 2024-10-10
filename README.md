@@ -1,5 +1,13 @@
-# kode
+<a href="https://apps.apple.com/us/app/kode/id6504694366?itscg=30200&itsct=apps_box_artwork&mttnsubad=6504694366" style="width: 170px; height: 170px; border-radius: 6px; overflow: hidden; display: inline-block; vertical-align: middle;">
+  <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/73/24/51/732451cc-54bc-058d-37f2-aa6df92d6454/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/540x540bb.jpg" alt="Kode" style="width: 170px; height: 170px; border-radius: 6px; overflow: hidden; display: inline-block; vertical-align: middle;" />
+</a>
+
+# kode 
 An iOS/macOS app for two-factor-authentication codes
+
+<a href="https://apps.apple.com/us/app/kode/id6504694366?itscg=30200&itsct=apps_box_badge&mttnsubad=6504694366" style="display: inline-block;">
+<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/white/en-us?releaseDate=1728432000" alt="Download on the App Store" style="width: 123px; height: 41px; vertical-align: middle; object-fit: contain;" />
+</a>
 
 ## Support
 If you're experiencing issues or have questions, feel free to reach out:
